@@ -378,45 +378,153 @@
       <div class="comparison-scroll-track" data-scroll-split>
         <div class="comparison-shell comparison-shell-scroll">
           <div class="comparison-stage">
-            <div class="comparison-bridge" aria-hidden="true">
-              <span class="comparison-bridge-node comparison-bridge-node-before"><i data-feather="lock"></i></span>
-              <span class="comparison-bridge-link"></span>
-              <span class="comparison-bridge-node comparison-bridge-node-after"><i data-feather="key"></i></span>
+            <div class="comparison-transform" aria-hidden="true">
+              <span class="comparison-transform-label comparison-transform-label-before">Messy dashboard</span>
+              <div class="comparison-transform-core">
+                <span class="comparison-transform-glow comparison-transform-glow-before"></span>
+                <span class="comparison-transform-glow comparison-transform-glow-after"></span>
+                <span class="comparison-transform-arrow"><i data-feather="arrow-right"></i></span>
+              </div>
+              <span class="comparison-transform-label comparison-transform-label-after">Clean organized system</span>
             </div>
 
             <article class="comparison-panel comparison-panel-before">
-              <div class="comparison-panel-head">
-                <div class="comparison-panel-label comparison-panel-label-before">Challenges</div>
-                <p class="comparison-panel-meta">Before (Manual Workflow)</p>
+              <div class="comparison-dashboard-head">
+                <div class="comparison-browser-chrome">
+                  <span class="comparison-browser-dot red"></span>
+                  <span class="comparison-browser-dot yellow"></span>
+                  <span class="comparison-browser-dot green"></span>
+                  <span class="comparison-browser-title">Manual Order Board</span>
+                </div>
+                <div class="comparison-dashboard-kicker comparison-dashboard-kicker-before">Before</div>
               </div>
 
-              <ul class="check-list error-list comparison-list">
-                <li><i data-feather="x"></i><span>Managing everything through chats and messages</span></li>
-                <li><i data-feather="x"></i><span>Losing track of design versions</span></li>
-                <li><i data-feather="x"></i><span>Constant back-and-forth with customers</span></li>
-                <li><i data-feather="x"></i><span>Costly mistakes in production</span></li>
-                <li><i data-feather="x"></i><span>Feeling overwhelmed every day</span></li>
-              </ul>
+              <div class="comparison-dashboard-stage comparison-dashboard-stage-messy">
+                <div class="comparison-dashboard-ribbon comparison-dashboard-ribbon-error">18 unread updates</div>
+
+                <div class="comparison-messy-cluster">
+                  <div class="comparison-widget comparison-widget-alert comparison-widget-tilt-a">
+                    <span class="comparison-widget-tag">Overdue</span>
+                    <strong>Proof approval missing</strong>
+                    <p>3 files sent in 4 chat threads</p>
+                  </div>
+
+                  <div class="comparison-widget comparison-widget-note comparison-widget-tilt-b">
+                    <span class="comparison-widget-tag">Revision 7</span>
+                    <strong>Which version is final?</strong>
+                    <p>Customer replied on WhatsApp only</p>
+                  </div>
+
+                  <div class="comparison-widget comparison-widget-warning comparison-widget-tilt-c">
+                    <span class="comparison-widget-tag">Print risk</span>
+                    <strong>Wrong file queued for production</strong>
+                    <p>Artwork and notes are not attached together</p>
+                  </div>
+                </div>
+
+                <div class="comparison-messy-feed">
+                  <div class="comparison-feed-row comparison-feed-row-error">
+                    <span class="comparison-feed-avatar">SM</span>
+                    <div class="comparison-feed-copy">
+                      <strong>Sarah Mitchell</strong>
+                      <p>“Any update?” sent twice</p>
+                    </div>
+                    <span class="comparison-feed-state">Lost</span>
+                  </div>
+
+                  <div class="comparison-feed-row comparison-feed-row-warning">
+                    <span class="comparison-feed-avatar">JD</span>
+                    <div class="comparison-feed-copy">
+                      <strong>Jordan Lee</strong>
+                      <p>Final file mixed with draft export</p>
+                    </div>
+                    <span class="comparison-feed-state">Risk</span>
+                  </div>
+
+                  <div class="comparison-feed-row comparison-feed-row-muted">
+                    <span class="comparison-feed-avatar">PC</span>
+                    <div class="comparison-feed-copy">
+                      <strong>Priya Design Co.</strong>
+                      <p>Production waiting for confirmation</p>
+                    </div>
+                    <span class="comparison-feed-state">Waiting</span>
+                  </div>
+                </div>
+              </div>
             </article>
 
             <article class="comparison-panel comparison-panel-after">
-              <div class="comparison-panel-head comparison-panel-head-after">
-                <div class="comparison-panel-label comparison-panel-label-after">Solutions</div>
-                <p class="comparison-panel-meta">After (With Our System)</p>
+              <div class="comparison-dashboard-head">
+                <div class="comparison-browser-chrome">
+                  <span class="comparison-browser-dot red"></span>
+                  <span class="comparison-browser-dot yellow"></span>
+                  <span class="comparison-browser-dot green"></span>
+                  <span class="comparison-browser-title">Operations Dashboard</span>
+                </div>
+                <div class="comparison-dashboard-kicker comparison-dashboard-kicker-after">After</div>
               </div>
 
-              <ul class="check-list success-list comparison-list">
-                <li><i data-feather="check"></i><span>All orders organized in one dashboard</span></li>
-                <li><i data-feather="check"></i><span>Clear, structured design approval process</span></li>
-                <li><i data-feather="check"></i><span>Revision tracking without confusion</span></li>
-                <li><i data-feather="check"></i><span>Accurate, print-ready files every time</span></li>
-                <li><i data-feather="check"></i><span>A smooth, stress-free workflow</span></li>
-              </ul>
+              <div class="comparison-dashboard-stage comparison-dashboard-stage-clean">
+                <div class="comparison-stat-strip">
+                  <div class="comparison-stat-card">
+                    <span class="comparison-stat-value">148</span>
+                    <span class="comparison-stat-label">Active Orders</span>
+                  </div>
+                  <div class="comparison-stat-card">
+                    <span class="comparison-stat-value">12</span>
+                    <span class="comparison-stat-label">Awaiting Approval</span>
+                  </div>
+                  <div class="comparison-stat-card">
+                    <span class="comparison-stat-value">89</span>
+                    <span class="comparison-stat-label">In Production</span>
+                  </div>
+                </div>
+
+                <div class="comparison-table">
+                  <div class="comparison-table-head">
+                    <span>Order</span>
+                    <span>Stage</span>
+                    <span>ETA</span>
+                  </div>
+
+                  <div class="comparison-table-row">
+                    <div class="comparison-table-order">
+                      <strong>#2408 Team Jerseys</strong>
+                      <p>Approved artwork attached</p>
+                    </div>
+                    <span class="comparison-table-status approved">Approved</span>
+                    <span class="comparison-table-time">Today</span>
+                  </div>
+
+                  <div class="comparison-table-row">
+                    <div class="comparison-table-order">
+                      <strong>#2410 Mug Batch</strong>
+                      <p>Customer response tracked</p>
+                    </div>
+                    <span class="comparison-table-status review">Review</span>
+                    <span class="comparison-table-time">2 hrs</span>
+                  </div>
+
+                  <div class="comparison-table-row">
+                    <div class="comparison-table-order">
+                      <strong>#2412 Canvas Prints</strong>
+                      <p>Print-ready package generated</p>
+                    </div>
+                    <span class="comparison-table-status queued">Queued</span>
+                    <span class="comparison-table-time">4 hrs</span>
+                  </div>
+                </div>
+
+                <div class="comparison-clean-footer">
+                  <span class="comparison-clean-pill"><i data-feather="check-circle"></i> Revision history tracked</span>
+                  <span class="comparison-clean-pill"><i data-feather="check-circle"></i> Files linked to each order</span>
+                </div>
+              </div>
             </article>
           </div>
 
           <div class="comparison-footer">
-            <strong>More orders. Less stress. Zero confusion.</strong>
+            <strong>Messy dashboard &rarr; Clean organized system</strong>
           </div>
         </div>
       </div>
