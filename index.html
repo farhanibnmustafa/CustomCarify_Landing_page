@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CustomCarify Enterprise - Optimize Your POD Workflow</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    /* Prevent Flash of Unstyled Content (FOUC) */
+    .fouc-guard {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .fouc-ready {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="fouc-guard">
+  <div class="spotlight"></div>
+
+  <nav class="navbar">
+    <div class="container nav-container">
+      <div class="nav-left">
+        <a href="#problem" class="nav-link">Problem</a>
+        <a href="#workflow" class="nav-link">Workflow</a>
+      </div>
+      <div class="logo">Custom<span>Carify</span></div>
+      <div class="nav-right">
+        <div class="nav-links-desktop">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#why-us" class="nav-link">Why Us</a>
+        </div>
+        <a href="#audit" class="btn btn-nav">Request Demo</a>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-links" id="mobile-menu" aria-hidden="true">
+    <div class="nav-links-header">
+      <span class="nav-links-eyebrow">Control Room</span>
+      <p class="nav-links-intro">Jump into the part of the workflow you want to fix first.</p>
+    </div>
+    <div class="nav-links-list">
+      <a href="#problem" class="nav-link nav-link-card">
+        <span class="nav-link-index">01</span>
+        <span class="nav-link-copy">
+          <span class="nav-link-label">Problem</span>
+          <span class="nav-link-meta">Audit the bottlenecks slowing orders down.</span>
+        </span>
+      </a>
+      <a href="#workflow" class="nav-link nav-link-card">
+        <span class="nav-link-index">02</span>
+        <span class="nav-link-copy">
+          <span class="nav-link-label">Workflow</span>
+          <span class="nav-link-meta">See the clean system from order to delivery.</span>
+        </span>
+      </a>
+      <a href="#features" class="nav-link nav-link-card">
+        <span class="nav-link-index">03</span>
+        <span class="nav-link-copy">
+          <span class="nav-link-label">Features</span>
+          <span class="nav-link-meta">Review the automation tools behind the platform.</span>
+        </span>
+      </a>
+      <a href="#why-us" class="nav-link nav-link-card">
+        <span class="nav-link-index">04</span>
+        <span class="nav-link-copy">
+          <span class="nav-link-label">Why Us</span>
+          <span class="nav-link-meta">Understand what makes the operation sharper.</span>
+        </span>
+      </a>
+    </div>
+    <div class="nav-links-footer">
+      <a href="#audit" class="btn btn-nav nav-cta">Request Demo</a>
+      <p class="nav-links-note">Free workflow audit for growing POD teams.</p>
+    </div>
+  </div>
+  <div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+
+  <!-- HERO SECTION -->
+  <header class="section hero-section reveal">
+    <div class="container hero-container text-center">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          The #1 POD Business Management Platform
+        </div>
+        <h1 class="hero-title">Stop Managing Orders Manually <span id="typing-target"></span></h1>
+        <p class="subheadline mx-auto">Keep orders, approvals, and production in one organized workflow so your POD
+          business scales with fewer delays and mistakes.</p>
+        <div class="hero-cta-group">
+          <a href="#audit" class="btn btn-glow btn-large">Get Your Free Workflow Audit</a>
+          <a href="#workflow" class="btn btn-secondary btn-large"><i data-feather="play"></i> See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value">2,400<span>+</span></span>
+          <span class="stat-label">Printing Businesses</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">98<span>%</span></span>
+          <span class="stat-label">Customer Satisfaction</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">3<span>x</span></span>
+          <span class="stat-label">Faster Order Processing</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">0</span>
+          <span class="stat-label">Missed Orders</span>
+        </div>
+      </div>
+
+      <div class="trust-line text-center mt-4">
+        <strong><i data-feather="shield"></i> Trusted by growing POD & printing businesses</strong>
+      </div>
+
+      <div class="hero-image-wrapper">
+        <div class="glow-bg"></div>
+
+        <!-- LIVE DASHBOARD COMPONENT -->
+        <div class="dashboard-window">
+          <div class="dashboard-header">
+            <div class="header-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="header-url">app.customcarify.io/dashboard</div>
+          </div>
+
+          <div class="dashboard-body">
+            <!-- SIDEBAR -->
+            <aside class="dashboard-sidebar">
+              <div class="sidebar-item active">
+                <i data-feather="grid"></i> <span>Dashboard</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="shopping-bag"></i> <span>Orders</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="pen-tool"></i> <span>Designs</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="check-circle"></i> <span>Proofing</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="cpu"></i> <span>Production</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="truck"></i> <span>Shipping</span>
+              </div>
+              <div class="sidebar-item">
+                <i data-feather="bar-chart-2"></i> <span>Analytics</span>
+              </div>
+            </aside>
+
+            <!-- MAIN AREA -->
+            <main class="dashboard-content">
+              <div class="content-header">
+                <h2>Today's Overview</h2>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <span class="stat-number color-orange">47</span>
+                  <span class="stat-name">New Orders</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-number color-yellow">12</span>
+                  <span class="stat-name">Awaiting Proof</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-number color-green">31</span>
+                  <span class="stat-name">In Production</span>
+                </div>
+              </div>
+
+              <div class="activity-list">
+                <div class="activity-row">
+                  <div class="user-avatar orange-grad"></div>
+                  <div class="row-info">
+                    <span class="row-user">Sarah Mitchell</span>
+                    <span class="row-desc">Custom T-Shirt • 50 units</span>
+                  </div>
+                  <div class="row-status status-sent">Proof Sent</div>
+                </div>
+
+                <div class="activity-row">
+                  <div class="user-avatar blue-grad"></div>
+                  <div class="row-info">
+                    <span class="row-user">Jordan Lee</span>
+                    <span class="row-desc">Mug Print • 24 units</span>
+                  </div>
+                  <div class="row-status status-approved">Approved <i data-feather="check"
+                      style="width:12px;height:12px;"></i></div>
+                </div>
+
+                <div class="activity-row">
+                  <div class="user-avatar gold-grad"></div>
+                  <div class="row-info">
+                    <span class="row-user">Priya Design Co.</span>
+                    <span class="row-desc">Canvas Print • 8 units</span>
+                  </div>
+                  <div class="row-status status-pending">Designing</div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM STORY SECTION -->
+  <section id="problem" class="section problem-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Every Order Starts Simple…<br /><em>Then the Chaos Begins</em></h2>
+        <p class="section-subheadline">Orders increase, but the team gets stuck chasing approvals, fixing mistakes, and
+          replying to updates all day.</p>
+      </div>
+
+      <div class="bento-grid problem-grid">
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="inbox"></i></div>
+          <h3><em>Manual</em> Order Handling</h3>
+          <p>Orders coming from multiple platforms, nothing synced.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="clock"></i></div>
+          <h3>Design Approval <em>Delays</em></h3>
+          <p>No clear design approval system.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="alert-triangle"></i></div>
+          <h3>File & <em>Print Errors</em></h3>
+          <p>Wrong files sent to print &rarr; reprints &rarr; lost money.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="truck"></i></div>
+          <h3>Fulfillment <em>Bottlenecks</em></h3>
+          <p>Suppliers waiting. Orders stuck. Everything delayed.</p>
+        </div>
+        <div class="bento-card wide">
+          <div class="icon-wrap"><i data-feather="message-circle"></i></div>
+          <h3>Customer <em>Complaints</em></h3>
+          <p>“Any update?” “Where is my order?” — nonstop messages.</p>
+        </div>
+      </div>
+
+      <div class="problem-conclusion text-center reveal mt-4">
+        <p class="conclusion-text">What should feel like growth… <span class="highlight">feels like
+            stress.</span><br />And as your orders grow, the chaos only gets worse.</p>
+        <h3 class="fix-callout">Let’s fix your workflow</h3>
+        <a href="#audit" class="btn btn-secondary mt-2">Fix My Workflow</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW VISUALIZATION SECTION -->
+  <section id="workflow" class="section workflow-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="eyebrow">From Order to Delivery — One Simple Workflow</span>
+        <h2>Turn Your Messy POD Workflow Into a <em>Smooth, Organized System</em></h2>
+        <p class="section-subheadline text-muted">Organize your orders, simplify approvals, and reduce errors — so you
+          can focus on growing your business.</p>
+      </div>
+
+      <div class="workflow-visual">
+        <div class="workflow-steps">
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step-icon-wrap">
+              <i data-feather="shopping-cart"></i>
+              <div class="step-number">01</div>
+            </div>
+            <h4>Order</h4>
+            <p>Organize all your orders in one place</p>
+          </div>
+
+          <div class="connector">
+            <div class="dot-pulse"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step">
+            <div class="step-icon-wrap">
+              <i data-feather="edit-3"></i>
+              <div class="step-number">02</div>
+            </div>
+            <h4>Design</h4>
+            <p>Manage design approvals without confusion</p>
+          </div>
+
+          <div class="connector">
+            <div class="dot-pulse"></div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step-icon-wrap">
+              <i data-feather="check-circle"></i>
+              <div class="step-number">03</div>
+            </div>
+            <h4>Approval</h4>
+            <p>Track every revision clearly</p>
+          </div>
+
+          <div class="connector">
+            <div class="dot-pulse"></div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step">
+            <div class="step-icon-wrap">
+              <i data-feather="printer"></i>
+              <div class="step-number">04</div>
+            </div>
+            <h4>Production</h4>
+            <p>Prepare accurate print-ready files</p>
+          </div>
+
+          <div class="connector">
+            <div class="dot-pulse"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step">
+            <div class="step-icon-wrap">
+              <i data-feather="package"></i>
+              <div class="step-number">05</div>
+            </div>
+            <h4>Delivery</h4>
+            <p>Happy customer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-conclusion text-center reveal mt-4">
+        <h3 class="scale-text">Handle 2x more orders without increasing workload</h3>
+        <a href="#audit" class="btn btn-primary btn-large mt-3">Get a Custom Solution</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE VS AFTER SECTION -->
+  <section class="section comparison-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>From Daily Chaos &rarr; To a <em>Smooth, Organized Workflow</em></h2>
+        <p class="section-subheadline">See the difference between a manual process and a structured system.</p>
+        <p class="small-sub text-muted">Less back-and-forth, fewer missed details, and a workflow that is easier to run.</p>
+      </div>
+
+      <div class="split-layout">
+        <!-- Before -->
+        <div class="bento-card before-card">
+          <div class="card-badge bg-red text-red">Before (Manual Workflow)</div>
+          <ul class="check-list error-list">
+            <li><i data-feather="x"></i> Managing everything through chats and messages</li>
+            <li><i data-feather="x"></i> Losing track of design versions</li>
+            <li><i data-feather="x"></i> Constant back-and-forth with customers</li>
+            <li><i data-feather="x"></i> Costly mistakes in production</li>
+            <li><i data-feather="x"></i> Feeling overwhelmed every day</li>
+          </ul>
+        </div>
+
+        <!-- After -->
+        <div class="bento-card after-card glow-border">
+          <div class="card-badge bg-green text-green">After (With Our System)</div>
+          <ul class="check-list success-list">
+            <li><i data-feather="check"></i> All orders organized in one dashboard</li>
+            <li><i data-feather="check"></i> Clear, structured design approval process</li>
+            <li><i data-feather="check"></i> Revision tracking without confusion</li>
+            <li><i data-feather="check"></i> Accurate, print-ready files every time</li>
+            <li><i data-feather="check"></i> A smooth, stress-free workflow</li>
+          </ul>
+          <div class="after-conclusion">
+            <strong>More orders. Less stress. Zero confusion.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="section features-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Everything You Need to Run Your POD Business — <em>In One Place</em></h2>
+        <p class="section-subheadline">Orders, approvals, files, and production in one clear system.</p>
+      </div>
+
+      <div class="bento-grid feature-grid">
+        <!-- Feature 1 -->
+        <div class="bento-card feature-tall">
+          <div class="feature-content">
+            <div class="icon-wrap"><i data-feather="check-square"></i></div>
+            <h3>Design Approval & Revision System</h3>
+            <p>Approve designs clearly before printing. Track every feedback loop in one thread.</p>
+          </div>
+          <div class="feature-image">
+            <img src="/approval-mockup.png" alt="Design Approval Interface" />
+          </div>
+        </div>
+
+        <div class="feature-col">
+          <div class="bento-card">
+            <div class="icon-wrap"><i data-feather="layout"></i></div>
+            <h3>Centralized Order Dashboard</h3>
+            <p>See all your orders, statuses, and deadlines in a single, unified view.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon-wrap"><i data-feather="upload-cloud"></i></div>
+            <h3>Customer Design Upload System</h3>
+            <p>Seamlessly receive specific printing instructions and high-res files from customers.</p>
+          </div>
+        </div>
+
+        <div class="feature-col">
+          <div class="bento-card">
+            <div class="icon-wrap"><i data-feather="file-text"></i></div>
+            <h3>Print-Ready File Management</h3>
+            <p>Organize approved artwork files so production never downloads the wrong version.</p>
+          </div>
+          <div class="bento-card">
+            <div class="icon-wrap"><i data-feather="activity"></i></div>
+            <h3>Production Workflow Tracking</h3>
+            <p>Know exactly what is being printed, shipped, or awaiting payment at any given moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US SECTION -->
+  <section id="why-us" class="section choose-us-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="eyebrow">Why Printing Businesses Choose Us</span>
+        <h2>Not Just Developers — We Understand Your <em>Workflow</em></h2>
+        <p class="section-subheadline text-muted">Built for how printing teams actually work, not just how software is usually sold.</p>
+        <p class="trust-line mt-4 text-center"><strong><i data-feather="shield"></i> Trusted by growing POD & printing
+            businesses</strong></p>
+      </div>
+
+      <div class="bento-grid why-grid">
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="target"></i></div>
+          <h3><em>Built</em> for Real Printing</h3>
+          <p>Not generic software — designed for custom orders, design approvals, and real-world processes.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="zap"></i></div>
+          <h3><em>Simple</em> System for Teams</h3>
+          <p>No complex setup. No training headaches. Just a system that works from day one.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="clock"></i></div>
+          <h3>Save <em>Hours</em> Every Day</h3>
+          <p>Reduce manual work, back-and-forth, and repetitive tasks.</p>
+        </div>
+        <div class="bento-card">
+          <div class="icon-wrap"><i data-feather="trending-up"></i></div>
+          <h3>Grow <em>Without</em> Chaos</h3>
+          <p>Handle more orders without losing control of your workflow.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-4 reveal">
+        <h3 class="finishing-line">If your orders are growing but your workflow isn’t — <em>we help you fix
+            that.</em></h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER SECTION -->
+  <section id="audit" class="section offer-section reveal">
+    <div class="container">
+      <div class="bento-card offer-card glow-border">
+        <div class="offer-copy">
+          <div class="icon-wrap xl"><i data-feather="search"></i></div>
+          <h2>Get a Free Workflow Audit <em>Discover What’s Slowing You Down</em></h2>
+          <p class="section-subheadline">We’ll review your workflow and show you the biggest bottlenecks and next steps.</p>
+
+          <div class="offer-benefits">
+            <h4>What You'll Get:</h4>
+            <ul class="check-list success-list">
+              <li><i data-feather="check-circle"></i> Identify delays in your workflow</li>
+              <li><i data-feather="check-circle"></i> Spot inefficiencies and hidden bottlenecks</li>
+              <li><i data-feather="check-circle"></i> Get clear, actionable improvement suggestions</li>
+              <li><i data-feather="check-circle"></i> See how to scale your process without added chaos</li>
+            </ul>
+          </div>
+
+          <div class="offer-footer">
+            <p class="scarcity"><i data-feather="alert-circle"></i> Limited free audits available each week.</p>
+            <p class="offer-support">Share a few details about your business and we’ll reach back with the next step.</p>
+          </div>
+        </div>
+
+        <div class="audit-form-panel">
+          <div class="audit-form-header">
+            <span class="audit-form-kicker">Request Your Audit</span>
+            <h3>Tell us about your operation</h3>
+            <p>Fill in your information and send the request directly to our team.</p>
+          </div>
+
+          <form class="audit-form" id="audit-form">
+            <div class="audit-form-grid">
+              <label class="form-field">
+                <span class="form-label">Full Name</span>
+                <input class="form-input" type="text" name="fullName" placeholder="Your full name" required />
+              </label>
+
+              <label class="form-field">
+                <span class="form-label">Business Name</span>
+                <input class="form-input" type="text" name="businessName" placeholder="Your business or brand" required />
+              </label>
+
+              <label class="form-field">
+                <span class="form-label">Work Email</span>
+                <input class="form-input" type="email" name="email" placeholder="you@company.com" required />
+              </label>
+
+              <label class="form-field">
+                <span class="form-label">Phone / WhatsApp</span>
+                <input class="form-input" type="tel" name="phone" placeholder="+1 555 123 4567" required />
+              </label>
+
+              <label class="form-field form-field-full">
+                <span class="form-label">Monthly Order Volume</span>
+                <select class="form-input form-select" name="volume" required>
+                  <option value="" selected disabled>Select your monthly order range</option>
+                  <option value="1-100 orders">1-100 orders</option>
+                  <option value="101-500 orders">101-500 orders</option>
+                  <option value="501-1000 orders">501-1000 orders</option>
+                  <option value="1000+ orders">1000+ orders</option>
+                </select>
+              </label>
+
+              <label class="form-field form-field-full">
+                <span class="form-label">Biggest Workflow Bottleneck</span>
+                <textarea class="form-input form-textarea" name="challenge" rows="5"
+                  placeholder="Tell us what’s breaking down right now: approvals, order tracking, communication, fulfillment, or something else."
+                  required></textarea>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large audit-submit">Send Audit Request</button>
+            <p class="form-note">This opens your email app with the completed request prefilled to our inbox.</p>
+            <p class="form-status" id="audit-form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="section faq-section reveal">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="eyebrow">Questions & Answers</span>
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subheadline text-muted">Quick answers before you request your audit.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-column">
+          <details class="faq-item">
+            <summary class="faq-question">What exactly is a workflow audit? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              A workflow audit is a personalized review of how your POD business currently handles orders, design
+              approvals, and fulfillment. We identify where things are slowing you down and show you how to fix them.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Is this a software or a service? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              It’s both. We provide a system tailored to your workflow and help you implement it so your operations run
+              smoothly without confusion.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Do I need technical knowledge to use this? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              No. The system is designed to be simple and easy to use for you and your team—no technical experience
+              required.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Will this replace my current tools (Shopify, WhatsApp, etc.)? <span
+                class="faq-icon"><i data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              Not necessarily. We organize and streamline your workflow so your existing tools work better
+              together—without the chaos.
+            </div>
+          </details>
+        </div>
+
+        <div class="faq-column">
+          <details class="faq-item">
+            <summary class="faq-question">How long does the audit take? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              The audit is quick and focused. You’ll get clear insights into your workflow and practical recommendations
+              without wasting your time.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Is the audit really free? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              Yes, it’s completely free. We offer a limited number of audits each week to ensure quality and
+              personalized attention.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">What happens after the audit? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              You’ll receive clear insights into what’s broken in your workflow and how to fix it. If you want, we can
+              help you implement the system—but there’s no obligation.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">Will this actually help me handle more orders? <span class="faq-icon"><i
+                  data-feather="chevron-down"></i></span></summary>
+            <div class="faq-answer">
+              Yes. By organizing your workflow and reducing manual work, you’ll be able to manage more orders without
+              increasing stress or errors.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="faq-footer text-center mt-4">
+        <p class="text-muted">Still have questions? We’ll walk you through everything during your free audit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA & FOOTER -->
+  <footer class="section cta-section reveal">
+    <div class="container text-center">
+      <h2>Stop Managing Chaos — <br /><em>Start Running a System</em></h2>
+      <p class="section-subheadline">Fix the workflow, save time, and grow without more operational chaos.</p>
+      <a href="#audit" class="btn btn-primary btn-large mt-3">Get My Free Workflow Audit</a>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 CustomCarify by Softloon. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
