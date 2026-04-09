@@ -1546,6 +1546,7 @@ a {
 
 .comparison-shell.comparison-shell-scroll {
   --split-progress: 0;
+  --comparison-split-duration: 0.62s;
   position: relative;
   top: auto;
   overflow: visible;
@@ -1559,7 +1560,7 @@ a {
   min-height: min(56vh, 470px);
   padding-top: 84px;
   position: relative;
-  transition: gap 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: gap var(--comparison-split-duration) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comparison-shell-scroll .comparison-stage::after {
@@ -1581,8 +1582,8 @@ a {
   opacity: calc(0.08 + (0.46 * var(--split-progress)));
   pointer-events: none;
   transition:
-    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.28s ease;
+    transform var(--comparison-split-duration) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.42s ease;
 }
 
 .comparison-transform {
@@ -1597,8 +1598,8 @@ a {
   transform: translateX(-50%) translateY(calc((1 - var(--split-progress)) * 12px));
   opacity: calc(0.18 + (0.82 * var(--split-progress)));
   transition:
-    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.28s ease;
+    transform var(--comparison-split-duration) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.42s ease;
   pointer-events: none;
 }
 
@@ -1757,9 +1758,9 @@ a {
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
   will-change: transform, opacity;
   transition:
-    flex-basis 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.28s ease,
-    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-basis var(--comparison-split-duration) cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.42s ease,
+    transform var(--comparison-split-duration) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .comparison-panel::before {

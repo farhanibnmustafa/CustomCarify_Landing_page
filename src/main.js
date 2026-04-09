@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (comparisonScrollTrack) {
     const comparisonShell = comparisonScrollTrack.querySelector('.comparison-shell')
+    let hasSplitActivated = false
+
     const setSplitProgress = (isSplit) => {
       if (!comparisonShell) {
         return
@@ -148,14 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const splitObserver = new IntersectionObserver((entries) => {
       const entry = entries[0]
 
-      if (!entry) {
+      if (!entry || hasSplitActivated) {
         return
       }
 
-      setSplitProgress(entry.isIntersecting && entry.intersectionRatio >= 0.24)
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+        hasSplitActivated = true
+        setSplitProgress(true)
+        splitObserver.disconnect()
+      }
     }, {
-      threshold: [0.18, 0.24, 0.4],
-      rootMargin: '0px 0px -10% 0px'
+      threshold: [0.2],
+      rootMargin: '0px 0px -8% 0px'
     })
 
     splitObserver.observe(comparisonScrollTrack)
