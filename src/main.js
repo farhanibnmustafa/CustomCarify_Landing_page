@@ -131,6 +131,37 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  // Quick in-view Before / After Split
+  const comparisonScrollTrack = document.querySelector('[data-scroll-split]')
+
+  if (comparisonScrollTrack) {
+    const comparisonShell = comparisonScrollTrack.querySelector('.comparison-shell')
+    const setSplitProgress = (isSplit) => {
+      if (!comparisonShell) {
+        return
+      }
+
+      comparisonShell.style.setProperty('--split-progress', isSplit ? '1' : '0')
+      comparisonShell.classList.toggle('is-split', isSplit)
+    }
+
+    const splitObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+
+      if (!entry) {
+        return
+      }
+
+      setSplitProgress(entry.isIntersecting && entry.intersectionRatio >= 0.24)
+    }, {
+      threshold: [0.18, 0.24, 0.4],
+      rootMargin: '0px 0px -10% 0px'
+    })
+
+    splitObserver.observe(comparisonScrollTrack)
+    setSplitProgress(false)
+  }
+
   // Lead Form
   const auditForm = document.getElementById('audit-form')
   const auditFormStatus = document.getElementById('audit-form-status')
