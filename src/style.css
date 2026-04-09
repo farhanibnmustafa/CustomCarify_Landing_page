@@ -1203,25 +1203,15 @@ a {
 .comparison-shell {
   --comparison-focus-y: 190px;
   position: relative;
-  padding: clamp(16px, 2.2vw, 24px);
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at 10% 18%, rgba(239, 68, 68, 0.08), transparent 24%),
-    radial-gradient(circle at 88% 16%, rgba(47, 158, 68, 0.14), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 250, 242, 0.98) 100%);
-  border: 1px solid rgba(47, 158, 68, 0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.92),
-    0 24px 56px rgba(20, 64, 33, 0.08);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .comparison-shell::before {
-  content: '';
-  position: absolute;
-  inset: 12px;
-  border-radius: 26px;
-  border: 1px solid rgba(47, 158, 68, 0.07);
-  pointer-events: none;
+  content: none;
 }
 
 .comparison-stage {
@@ -1558,30 +1548,115 @@ a {
   --split-progress: 0;
   position: relative;
   top: auto;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .comparison-shell-scroll .comparison-stage {
+  --comparison-stage-gap: calc(28px * var(--split-progress));
   display: flex;
   align-items: stretch;
-  gap: calc(10px + (22px * var(--split-progress)));
-  min-height: min(62vh, 540px);
+  gap: var(--comparison-stage-gap);
+  min-height: min(50vh, 430px);
+  padding-top: 68px;
   transition: gap 0.42s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.comparison-shell-scroll .comparison-column-header {
+.comparison-bridge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  transform: translateX(-50%) translateY(calc((1 - var(--split-progress)) * 10px));
+  opacity: calc(0.18 + (0.82 * var(--split-progress)));
+  transition:
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.comparison-bridge-link {
+  width: 48px;
+  height: 16px;
+  margin: 0 -6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 118, 87, 0.82), rgba(37, 191, 132, 0.82));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.comparison-bridge-node {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  box-shadow: 0 16px 28px rgba(20, 64, 33, 0.16);
+}
+
+.comparison-bridge-node-before {
+  background: linear-gradient(135deg, #ff9c73, #ff5e62);
+}
+
+.comparison-bridge-node-after {
+  background: linear-gradient(135deg, #33c78d, #1fa874);
+}
+
+.comparison-bridge-node svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.1;
+}
+
+.comparison-panel-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   margin-bottom: 18px;
 }
 
+.comparison-panel-head-after {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.comparison-panel-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-panel-label-before {
+  color: #ff7a52;
+}
+
+.comparison-panel-label-after {
+  color: #22b27a;
+}
+
+.comparison-panel-meta {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(21, 52, 35, 0.48);
+}
+
 .comparison-panel {
+  position: relative;
   min-width: 0;
-  overflow: hidden;
-  padding: 28px 24px 24px;
+  overflow: visible;
+  padding: 28px 28px 22px;
   border-radius: 28px;
-  border: 1px solid rgba(47, 158, 68, 0.1);
+  border: 1px solid rgba(21, 52, 35, 0.08);
+  background: rgba(255, 255, 255, 0.98);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 16px 34px rgba(20, 64, 33, 0.07);
+    0 18px 36px rgba(20, 64, 33, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
   will-change: transform, opacity;
   transition:
     flex-basis 0.42s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1589,30 +1664,123 @@ a {
     transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.comparison-panel::after {
+  content: '';
+  position: absolute;
+  top: -34px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: #f4fbf4;
+  z-index: 1;
+}
+
 .comparison-panel-before {
-  flex: 0 0 calc(100% - (50% * var(--split-progress)));
+  flex: 0 0 calc((100% - var(--comparison-stage-gap)) - (((100% - var(--comparison-stage-gap)) / 2) * var(--split-progress)));
+  border-bottom: 4px solid rgba(255, 94, 98, 0.9);
   background:
-    radial-gradient(circle at 14% 14%, rgba(239, 68, 68, 0.08), transparent 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 248, 248, 0.98) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 247, 1) 100%);
+}
+
+.comparison-panel-before::after {
+  right: -42px;
 }
 
 .comparison-panel-after {
-  flex: 0 0 calc(50% * var(--split-progress));
+  flex: 0 0 calc(((100% - var(--comparison-stage-gap)) / 2) * var(--split-progress));
   opacity: min(calc(var(--split-progress) * 1.18), 1);
   transform: translate3d(calc((1 - var(--split-progress)) * 96px), 0, 0);
+  border-bottom: 4px solid rgba(31, 168, 116, 0.92);
   background:
-    radial-gradient(circle at 84% 14%, rgba(47, 158, 68, 0.12), transparent 30%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 251, 244, 0.98) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 252, 248, 1) 100%);
+}
+
+.comparison-panel-after::after {
+  left: -42px;
 }
 
 .comparison-shell-scroll .check-list {
   min-width: 0;
 }
 
+.comparison-list {
+  position: relative;
+  z-index: 2;
+}
+
+.comparison-list::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 12px;
+  border-radius: 999px;
+}
+
+.comparison-panel-before .comparison-list::before {
+  left: 0;
+  background: linear-gradient(180deg, #ff9c73, #ff5e62);
+}
+
+.comparison-panel-after .comparison-list::before {
+  right: 0;
+  background: linear-gradient(180deg, #33c78d, #1fa874);
+}
+
 .comparison-list li {
-  font-size: 0.92rem;
-  padding: 14px 0;
-  line-height: 1.45;
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 58px;
+  font-size: 0.96rem;
+  padding: 12px 0;
+  line-height: 1.35;
+}
+
+.comparison-list li span {
+  display: block;
+}
+
+.comparison-panel-before .comparison-list li {
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 18px;
+}
+
+.comparison-panel-after .comparison-list li {
+  grid-template-columns: minmax(0, 1fr) 30px;
+  gap: 18px;
+  text-align: right;
+}
+
+.comparison-panel-before .comparison-list li svg {
+  grid-column: 1;
+}
+
+.comparison-panel-before .comparison-list li span {
+  grid-column: 2;
+}
+
+.comparison-panel-after .comparison-list li span {
+  grid-column: 1;
+}
+
+.comparison-panel-after .comparison-list li svg {
+  grid-column: 2;
+}
+
+.comparison-list li svg {
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  padding: 4px;
+  box-sizing: content-box;
+  display: block;
+  justify-self: center;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid currentColor;
+  box-shadow: 0 4px 8px rgba(20, 64, 33, 0.08);
 }
 
 .comparison-footer {
@@ -2274,11 +2442,17 @@ a {
     flex-direction: column;
     min-height: auto;
     gap: calc(14px + (16px * var(--split-progress)));
+    padding-top: 0;
   }
 
   .comparison-panel-before,
   .comparison-panel-after {
     flex-basis: auto;
+  }
+
+  .comparison-bridge,
+  .comparison-panel::after {
+    display: none;
   }
 
   .comparison-panel-before {
@@ -2386,8 +2560,8 @@ a {
   }
 
   .comparison-shell {
-    padding: 18px;
-    border-radius: 30px;
+    padding: 0;
+    border-radius: 0;
   }
 
   .comparison-panel,
