@@ -131,41 +131,371 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // Quick in-view Before / After Split
+  // Scroll-linked Before / After Split
   const comparisonScrollTrack = document.querySelector('[data-scroll-split]')
 
   if (comparisonScrollTrack) {
     const comparisonShell = comparisonScrollTrack.querySelector('.comparison-shell')
-    let hasSplitActivated = false
+    const comparisonStage = comparisonScrollTrack.querySelector('.comparison-stage')
+    const comparisonButtons = Array.from(
+      comparisonScrollTrack.querySelectorAll('[data-compare-target]')
+    )
+    const comparisonToggle = comparisonScrollTrack.querySelector('[data-compare-toggle]')
+    const comparisonPanels = Array.from(
+      comparisonScrollTrack.querySelectorAll('[data-compare-panel]')
+    )
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let comparisonAnimationFrame = null
+    let mobileCompareView = 'before'
+    let touchStartX = 0
+    let touchStartY = 0
+    let hasAutoSwappedMobileCompare = false
+    let comparisonAutoSwapTimer = null
 
-    const setSplitProgress = (isSplit) => {
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
+    const mobileCompareBreakpoint = 1080
+
+    const setMobileCompareView = (view) => {
       if (!comparisonShell) {
         return
       }
 
-      comparisonShell.style.setProperty('--split-progress', isSplit ? '1' : '0')
-      comparisonShell.classList.toggle('is-split', isSplit)
+      mobileCompareView = view === 'after' ? 'after' : 'before'
+      comparisonShell.dataset.mobileCompare = mobileCompareView
+
+      comparisonButtons.forEach((button) => {
+        const isActive = button.dataset.compareTarget === mobileCompareView
+        button.classList.toggle('is-active', isActive)
+        button.setAttribute('aria-selected', String(isActive))
+        button.tabIndex = isActive ? 0 : -1
+      })
+
+      comparisonPanels.forEach((panel) => {
+        const isActive = panel.dataset.comparePanel === mobileCompareView
+        panel.classList.toggle('is-active', isActive)
+        panel.hidden = window.innerWidth <= mobileCompareBreakpoint ? !isActive : false
+        panel.setAttribute(
+          'aria-hidden',
+          String(window.innerWidth <= mobileCompareBreakpoint ? !isActive : false)
+        )
+      })
+
+      if (comparisonToggle) {
+        const nextViewLabel =
+          mobileCompareView === 'before'
+            ? 'Show clean organized system'
+            : 'Show messy dashboard'
+        comparisonToggle.setAttribute('aria-label', nextViewLabel)
+      }
     }
 
-    const splitObserver = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-
-      if (!entry || hasSplitActivated) {
+    const syncMobileCompareMode = () => {
+      if (!comparisonShell) {
         return
       }
 
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-        hasSplitActivated = true
-        setSplitProgress(true)
-        splitObserver.disconnect()
+      if (window.innerWidth <= mobileCompareBreakpoint) {
+        comparisonShell.classList.add('is-mobile-compare')
+        comparisonToggle?.setAttribute('tabindex', '0')
+        setMobileCompareView(mobileCompareView)
+        return
       }
+
+      comparisonShell.classList.remove('is-mobile-compare')
+      comparisonShell.dataset.mobileCompare = 'split'
+      comparisonShell.classList.remove('is-mobile-compare-autoplay')
+      comparisonToggle?.setAttribute('tabindex', '-1')
+
+      comparisonButtons.forEach((button) => {
+        button.classList.remove('is-active')
+        button.tabIndex = -1
+        button.setAttribute('aria-selected', 'false')
+      })
+
+      comparisonPanels.forEach((panel) => {
+        panel.hidden = false
+        panel.classList.remove('is-active')
+        panel.setAttribute('aria-hidden', 'false')
+      })
+    }
+
+    const stopMobileCompareAutoSwap = (markComplete = false) => {
+      window.clearTimeout(comparisonAutoSwapTimer)
+      comparisonShell?.classList.remove('is-mobile-compare-autoplay')
+
+      if (markComplete) {
+        hasAutoSwappedMobileCompare = true
+      }
+    }
+
+    const queueMobileCompareAutoSwap = () => {
+      if (
+        !comparisonShell ||
+        hasAutoSwappedMobileCompare ||
+        prefersReducedMotion.matches ||
+        window.innerWidth > mobileCompareBreakpoint
+      ) {
+        return
+      }
+
+      window.clearTimeout(comparisonAutoSwapTimer)
+      comparisonShell.classList.add('is-mobile-compare-autoplay')
+
+      comparisonAutoSwapTimer = window.setTimeout(() => {
+        setMobileCompareView('after')
+        hasAutoSwappedMobileCompare = true
+        comparisonShell.classList.remove('is-mobile-compare-autoplay')
+      }, 420)
+    }
+
+    const mobileCompareAutoSwapObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+
+      if (!entry || !entry.isIntersecting) {
+        return
+      }
+
+      queueMobileCompareAutoSwap()
     }, {
-      threshold: [0.2],
-      rootMargin: '0px 0px -8% 0px'
+      threshold: 0.45,
+      rootMargin: '0px 0px -12% 0px'
     })
 
-    splitObserver.observe(comparisonScrollTrack)
-    setSplitProgress(false)
+    const setSplitProgress = (progress) => {
+      if (!comparisonShell) {
+        return
+      }
+
+      const normalizedProgress = clamp(progress, 0, 1)
+      comparisonShell.style.setProperty('--split-progress', normalizedProgress.toFixed(3))
+      comparisonShell.classList.toggle('is-split', normalizedProgress > 0.04)
+    }
+
+    const updateSplitProgress = () => {
+      comparisonAnimationFrame = null
+
+      if (!comparisonShell) {
+        return
+      }
+
+      if (window.innerWidth <= 1080 || prefersReducedMotion.matches) {
+        setSplitProgress(1)
+        return
+      }
+
+      const rect = comparisonScrollTrack.getBoundingClientRect()
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight
+      const animationStart = viewportHeight * 0.88
+      const animationEnd = viewportHeight * 0.28
+
+      if (rect.top >= animationStart) {
+        setSplitProgress(0)
+        return
+      }
+
+      if (rect.bottom <= animationEnd) {
+        setSplitProgress(1)
+        return
+      }
+
+      const progress = (animationStart - rect.top) / Math.max(animationStart - animationEnd, 1)
+      setSplitProgress(progress)
+    }
+
+    const queueSplitUpdate = () => {
+      if (comparisonAnimationFrame !== null) {
+        return
+      }
+
+      comparisonAnimationFrame = window.requestAnimationFrame(updateSplitProgress)
+    }
+
+    window.addEventListener('scroll', queueSplitUpdate, { passive: true })
+    window.addEventListener('resize', () => {
+      syncMobileCompareMode()
+      queueSplitUpdate()
+    })
+
+    if (typeof prefersReducedMotion.addEventListener === 'function') {
+      prefersReducedMotion.addEventListener('change', () => {
+        syncMobileCompareMode()
+        queueSplitUpdate()
+      })
+    } else if (typeof prefersReducedMotion.addListener === 'function') {
+      prefersReducedMotion.addListener(() => {
+        syncMobileCompareMode()
+        queueSplitUpdate()
+      })
+    }
+
+    comparisonButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        stopMobileCompareAutoSwap(true)
+        setMobileCompareView(button.dataset.compareTarget)
+      })
+    })
+
+    comparisonToggle?.addEventListener('click', () => {
+      stopMobileCompareAutoSwap(true)
+      setMobileCompareView(mobileCompareView === 'before' ? 'after' : 'before')
+    })
+
+    comparisonStage?.addEventListener('touchstart', (event) => {
+      const touch = event.changedTouches[0]
+
+      if (!touch || window.innerWidth > mobileCompareBreakpoint) {
+        return
+      }
+
+      touchStartX = touch.clientX
+      touchStartY = touch.clientY
+    }, { passive: true })
+
+    comparisonStage?.addEventListener('touchend', (event) => {
+      const touch = event.changedTouches[0]
+
+      if (!touch || window.innerWidth > mobileCompareBreakpoint) {
+        return
+      }
+
+      const deltaX = touch.clientX - touchStartX
+      const deltaY = touch.clientY - touchStartY
+
+      if (Math.abs(deltaX) < 42 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+        return
+      }
+
+      stopMobileCompareAutoSwap(true)
+      setMobileCompareView(deltaX < 0 ? 'after' : 'before')
+    }, { passive: true })
+
+    mobileCompareAutoSwapObserver.observe(comparisonScrollTrack)
+    syncMobileCompareMode()
+    updateSplitProgress()
+  }
+
+  // --- Feature Mockup Carousel ---
+  const featureMockupDeck = document.querySelector('[data-feature-mockup]')
+
+  if (featureMockupDeck) {
+    const featureMockupStage = featureMockupDeck.querySelector('[data-feature-mockup-stage]')
+    const featureMockupCards = Array.from(featureMockupDeck.querySelectorAll('[data-feature-mockup-card]'))
+    const featureMockupPrev = featureMockupDeck.querySelector('[data-feature-mockup-prev]')
+    const featureMockupNext = featureMockupDeck.querySelector('[data-feature-mockup-next]')
+    const featureMockupDots = Array.from(featureMockupDeck.querySelectorAll('[data-feature-mockup-dot]'))
+    const featureMockupProgress = featureMockupDeck.querySelector('[data-feature-mockup-progress]')
+    let featureMockupIndex = 0
+    let featureMockupPointerActive = false
+    let featureMockupPointerStartX = 0
+    let featureMockupPointerStartY = 0
+
+    const getFeatureMockupPosition = (index) => {
+      const delta = (index - featureMockupIndex + featureMockupCards.length) % featureMockupCards.length
+
+      if (delta === 0) {
+        return 'active'
+      }
+
+      if (delta === 1) {
+        return 'next'
+      }
+
+      if (delta === 2) {
+        return 'far'
+      }
+
+      return 'prev'
+    }
+
+    const renderFeatureMockups = () => {
+      featureMockupCards.forEach((card, index) => {
+        const position = getFeatureMockupPosition(index)
+        card.dataset.position = position
+        card.setAttribute('aria-hidden', String(position !== 'active'))
+      })
+
+      featureMockupDots.forEach((dot, index) => {
+        const isActive = index === featureMockupIndex
+        dot.classList.toggle('is-active', isActive)
+        dot.setAttribute('aria-pressed', String(isActive))
+      })
+
+      if (featureMockupProgress) {
+        const current = String(featureMockupIndex + 1).padStart(2, '0')
+        const total = String(featureMockupCards.length).padStart(2, '0')
+        featureMockupProgress.textContent = `${current} / ${total}`
+      }
+    }
+
+    const setFeatureMockupIndex = (nextIndex) => {
+      if (!featureMockupCards.length) {
+        return
+      }
+
+      featureMockupIndex = (nextIndex + featureMockupCards.length) % featureMockupCards.length
+      renderFeatureMockups()
+    }
+
+    featureMockupPrev?.addEventListener('click', () => {
+      setFeatureMockupIndex(featureMockupIndex - 1)
+    })
+
+    featureMockupNext?.addEventListener('click', () => {
+      setFeatureMockupIndex(featureMockupIndex + 1)
+    })
+
+    featureMockupDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        setFeatureMockupIndex(index)
+      })
+    })
+
+    featureMockupStage?.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        setFeatureMockupIndex(featureMockupIndex - 1)
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        setFeatureMockupIndex(featureMockupIndex + 1)
+      }
+    })
+
+    featureMockupStage?.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) {
+        return
+      }
+
+      featureMockupPointerActive = true
+      featureMockupPointerStartX = event.clientX
+      featureMockupPointerStartY = event.clientY
+      event.currentTarget?.setPointerCapture?.(event.pointerId)
+    })
+
+    featureMockupStage?.addEventListener('pointerup', (event) => {
+      if (!featureMockupPointerActive) {
+        return
+      }
+
+      featureMockupPointerActive = false
+      event.currentTarget?.releasePointerCapture?.(event.pointerId)
+
+      const deltaX = event.clientX - featureMockupPointerStartX
+      const deltaY = event.clientY - featureMockupPointerStartY
+
+      if (Math.abs(deltaX) < 42 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+        return
+      }
+
+      setFeatureMockupIndex(deltaX < 0 ? featureMockupIndex + 1 : featureMockupIndex - 1)
+    })
+
+    featureMockupStage?.addEventListener('pointercancel', () => {
+      featureMockupPointerActive = false
+    })
+
+    renderFeatureMockups()
   }
 
   // Lead Form

@@ -23,6 +23,8 @@
       opacity: 1;
     }
   </style>
+  <script type="module" src="/src/main.js"></script>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 
 <body class="fouc-guard">
@@ -301,7 +303,12 @@
             <p>Organize all your orders in one place</p>
           </div>
 
-          <div class="connector">
+          <div class="connector connector-down" aria-hidden="true">
+            <svg class="connector-curve" viewBox="0 0 160 72" preserveAspectRatio="none" aria-hidden="true">
+              <path class="connector-glow" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-stroke" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-shine" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+            </svg>
             <div class="dot-pulse"></div>
           </div>
 
@@ -315,7 +322,12 @@
             <p>Manage design approvals without confusion</p>
           </div>
 
-          <div class="connector">
+          <div class="connector connector-up" aria-hidden="true">
+            <svg class="connector-curve" viewBox="0 0 160 72" preserveAspectRatio="none" aria-hidden="true">
+              <path class="connector-glow" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-stroke" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-shine" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+            </svg>
             <div class="dot-pulse"></div>
           </div>
 
@@ -329,7 +341,12 @@
             <p>Track every revision clearly</p>
           </div>
 
-          <div class="connector">
+          <div class="connector connector-down" aria-hidden="true">
+            <svg class="connector-curve" viewBox="0 0 160 72" preserveAspectRatio="none" aria-hidden="true">
+              <path class="connector-glow" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-stroke" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-shine" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+            </svg>
             <div class="dot-pulse"></div>
           </div>
 
@@ -343,7 +360,12 @@
             <p>Prepare accurate print-ready files</p>
           </div>
 
-          <div class="connector">
+          <div class="connector connector-up" aria-hidden="true">
+            <svg class="connector-curve" viewBox="0 0 160 72" preserveAspectRatio="none" aria-hidden="true">
+              <path class="connector-glow" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-stroke" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+              <path class="connector-shine" d="M6 36 C36 36 42 68 82 68 C122 68 128 36 154 36"></path>
+            </svg>
             <div class="dot-pulse"></div>
           </div>
 
@@ -372,23 +394,46 @@
       <div class="section-header text-center">
         <h2>From Daily Chaos &rarr; To a <em>Smooth, Organized Workflow</em></h2>
         <p class="section-subheadline">See the difference between a manual process and a structured system.</p>
-        <p class="small-sub text-muted">Scroll into this section and watch the organized workflow split out from the manual one.</p>
       </div>
 
       <div class="comparison-scroll-track" data-scroll-split>
         <div class="comparison-shell comparison-shell-scroll">
           <div class="comparison-stage">
-            <div class="comparison-transform" aria-hidden="true">
-              <span class="comparison-transform-label comparison-transform-label-before">Messy dashboard</span>
-              <div class="comparison-transform-core">
+            <div class="comparison-transform" role="tablist" aria-label="Dashboard comparison">
+              <button
+                type="button"
+                class="comparison-transform-label comparison-transform-label-before is-active"
+                data-compare-target="before"
+                role="tab"
+                aria-selected="true"
+                aria-controls="comparison-before">
+                Messy dashboard
+              </button>
+              <button
+                type="button"
+                class="comparison-transform-core"
+                data-compare-toggle
+                aria-label="Show clean organized system">
                 <span class="comparison-transform-glow comparison-transform-glow-before"></span>
                 <span class="comparison-transform-glow comparison-transform-glow-after"></span>
                 <span class="comparison-transform-arrow"><i data-feather="arrow-right"></i></span>
-              </div>
-              <span class="comparison-transform-label comparison-transform-label-after">Clean organized system</span>
+              </button>
+              <button
+                type="button"
+                class="comparison-transform-label comparison-transform-label-after"
+                data-compare-target="after"
+                role="tab"
+                aria-selected="false"
+                aria-controls="comparison-after">
+                Clean organized system
+              </button>
             </div>
+            <p class="comparison-interaction-hint">Tap or swipe to compare before and after.</p>
 
-            <article class="comparison-panel comparison-panel-before">
+            <article
+              id="comparison-before"
+              class="comparison-panel comparison-panel-before"
+              data-compare-panel="before">
               <div class="comparison-dashboard-head">
                 <div class="comparison-browser-chrome">
                   <span class="comparison-browser-dot red"></span>
@@ -453,7 +498,10 @@
               </div>
             </article>
 
-            <article class="comparison-panel comparison-panel-after">
+            <article
+              id="comparison-after"
+              class="comparison-panel comparison-panel-after"
+              data-compare-panel="after">
               <div class="comparison-dashboard-head">
                 <div class="comparison-browser-chrome">
                   <span class="comparison-browser-dot red"></span>
@@ -535,48 +583,416 @@
   <section id="features" class="section features-section reveal">
     <div class="container">
       <div class="section-header text-center">
-        <h2>Everything You Need to Run Your POD Business — <em>In One Place</em></h2>
+        <h2>Everything You Need to Run Your POD Business &mdash; <em>In One Place</em></h2>
         <p class="section-subheadline">Orders, approvals, files, and production in one clear system.</p>
       </div>
 
-      <div class="bento-grid feature-grid">
-        <!-- Feature 1 -->
-        <div class="bento-card feature-tall">
-          <div class="feature-content">
-            <div class="icon-wrap"><i data-feather="check-square"></i></div>
-            <h3>Design Approval & Revision System</h3>
-            <p>Approve designs clearly before printing. Track every feedback loop in one thread.</p>
-          </div>
-          <div class="feature-image">
-            <img src="/approval-mockup.png" alt="Design Approval Interface" />
-          </div>
+      <div class="feature-constellation">
+        <div class="feature-powered-chip" aria-label="Powered by CustomCarify">
+          <span class="feature-powered-label">Powered by</span>
+          <span class="feature-powered-brand">CustomCarify</span>
         </div>
 
-        <div class="feature-col">
-          <div class="bento-card">
-            <div class="icon-wrap"><i data-feather="layout"></i></div>
-            <h3>Centralized Order Dashboard</h3>
-            <p>See all your orders, statuses, and deadlines in a single, unified view.</p>
-          </div>
-          <div class="bento-card">
-            <div class="icon-wrap"><i data-feather="upload-cloud"></i></div>
-            <h3>Customer Design Upload System</h3>
-            <p>Seamlessly receive specific printing instructions and high-res files from customers.</p>
-          </div>
+        <svg class="feature-network" viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+          <path class="feature-line-base" d="M492 76 V108 H376 V168"></path>
+          <path class="feature-line-base" d="M690 76 V108 H825 V168"></path>
+          <path class="feature-line-base" d="M548 108 V232 H376 V404"></path>
+          <path class="feature-line-base" d="M652 108 V232 H825 V404"></path>
+
+          <path class="feature-line-base feature-line-base-decor" d="M405 22 H492 V76"></path>
+          <path class="feature-line-base feature-line-base-decor" d="M548 0 V76"></path>
+          <path class="feature-line-base feature-line-base-decor" d="M652 12 V76"></path>
+          <path class="feature-line-base feature-line-base-decor" d="M795 22 H708 V76"></path>
+
+          <path class="feature-line-signal feature-line-signal-blue" d="M492 76 V108 H376 V168" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-secondary feature-line-signal-blue" d="M492 76 V108 H376 V168" transform="translate(-12 -8)" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-pink" d="M690 76 V108 H825 V168" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-secondary feature-line-signal-pink" d="M690 76 V108 H825 V168" transform="translate(12 -8)" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-green" d="M548 108 V232 H376 V404" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-secondary feature-line-signal-green" d="M548 108 V232 H376 V404" transform="translate(-12 10)" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-orange" d="M652 108 V232 H825 V404" pathLength="100"></path>
+          <path class="feature-line-signal feature-line-signal-secondary feature-line-signal-orange" d="M652 108 V232 H825 V404" transform="translate(12 10)" pathLength="100"></path>
+
+          <circle class="feature-line-node" cx="376" cy="155" r="5"></circle>
+          <circle class="feature-line-node" cx="825" cy="155" r="5"></circle>
+          <circle class="feature-line-node" cx="376" cy="404" r="5"></circle>
+          <circle class="feature-line-node" cx="825" cy="404" r="5"></circle>
+          <circle class="feature-line-node" cx="402" cy="22" r="4.5"></circle>
+          <circle class="feature-line-node" cx="652" cy="12" r="4.5"></circle>
+          <circle class="feature-line-node" cx="795" cy="22" r="4.5"></circle>
+          <circle class="feature-line-node feature-line-node-chip" cx="492" cy="76" r="4"></circle>
+          <circle class="feature-line-node feature-line-node-chip" cx="548" cy="108" r="4"></circle>
+          <circle class="feature-line-node feature-line-node-chip" cx="652" cy="108" r="4"></circle>
+          <circle class="feature-line-node feature-line-node-chip" cx="708" cy="76" r="4"></circle>
+        </svg>
+
+        <svg class="feature-network feature-network-mobile" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true">
+          <path class="feature-line-base" d="M600 92 V176 V308 V436 V628"></path>
+          <path class="feature-line-signal feature-line-signal-green" d="M600 92 V176 V308 V436 V628" pathLength="100"></path>
+
+          <circle class="feature-line-node feature-line-node-chip" cx="600" cy="92" r="4"></circle>
+          <circle class="feature-line-node" cx="600" cy="176" r="5"></circle>
+          <circle class="feature-line-node" cx="600" cy="308" r="5"></circle>
+          <circle class="feature-line-node" cx="600" cy="436" r="5"></circle>
+          <circle class="feature-line-node" cx="600" cy="628" r="5"></circle>
+        </svg>
+
+        <div class="feature-cards-row">
+          <article class="feature-card-njs feature-card-blue">
+            <div class="fcn-icon fcn-icon-blue"><i data-feather="layout"></i></div>
+            <div class="fcn-title-link">
+              <h3 class="fcn-title">Centralized Order Dashboard</h3>
+              <span class="fcn-arrow" aria-hidden="true"><i data-feather="arrow-up-right"></i></span>
+            </div>
+            <p class="fcn-desc">See all your orders, statuses, and deadlines in a single, unified view.</p>
+          </article>
+
+          <article class="feature-card-njs feature-card-pink">
+            <div class="fcn-icon fcn-icon-pink"><i data-feather="file-text"></i></div>
+            <div class="fcn-title-link">
+              <h3 class="fcn-title">Print-Ready File Management</h3>
+              <span class="fcn-arrow" aria-hidden="true"><i data-feather="arrow-up-right"></i></span>
+            </div>
+            <p class="fcn-desc">Organize approved artwork files so production never downloads the wrong version.</p>
+          </article>
+
+          <article class="feature-card-njs feature-card-green">
+            <div class="fcn-icon fcn-icon-green"><i data-feather="upload-cloud"></i></div>
+            <div class="fcn-title-link">
+              <h3 class="fcn-title">Customer Design Upload System</h3>
+              <span class="fcn-arrow" aria-hidden="true"><i data-feather="arrow-up-right"></i></span>
+            </div>
+            <p class="fcn-desc">Seamlessly receive specific printing instructions and high-res files from customers.</p>
+          </article>
+
+          <article class="feature-card-njs feature-card-orange">
+            <div class="fcn-icon fcn-icon-orange"><i data-feather="activity"></i></div>
+            <div class="fcn-title-link">
+              <h3 class="fcn-title">Production Workflow Tracking</h3>
+              <span class="fcn-arrow" aria-hidden="true"><i data-feather="arrow-up-right"></i></span>
+            </div>
+            <p class="fcn-desc">Know exactly what is being printed, shipped, or awaiting payment at any given moment.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="feature-mockup-showcase" data-feature-mockup>
+        <div class="feature-mockup-copy text-center">
+          <span class="eyebrow feature-mockup-kicker">Live interface mockups</span>
+          <h3>Follow the full POD workflow screen by screen</h3>
+          <p class="section-subheadline">From customer customization and proof approval to print-ready files, production, shipping, and payment.</p>
         </div>
 
-        <div class="feature-col">
-          <div class="bento-card">
-            <div class="icon-wrap"><i data-feather="file-text"></i></div>
-            <h3>Print-Ready File Management</h3>
-            <p>Organize approved artwork files so production never downloads the wrong version.</p>
+        <div class="feature-mockup-shell">
+          <button class="feature-mockup-nav feature-mockup-nav-prev" type="button" data-feature-mockup-prev aria-label="Previous mockup">
+            <i data-feather="chevron-left"></i>
+          </button>
+
+          <div class="feature-mockup-stage" data-feature-mockup-stage tabindex="0" aria-label="CustomCarify feature mockups">
+            <article class="feature-mockup-card feature-mockup-card-dashboard" data-feature-mockup-card data-feature-label="Centralized Order Dashboard">
+              <div class="feature-mockup-window">
+                <div class="feature-mockup-topbar">
+                  <span>Orders</span>
+                  <div class="feature-mockup-status-icons" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="feature-mockup-app-head">
+                  <div>
+                    <span class="feature-mockup-chip">Order intake</span>
+                    <h3>Centralized Dashboard</h3>
+                  </div>
+                  <span class="feature-mockup-icon" aria-hidden="true"><i data-feather="search"></i></span>
+                </div>
+                <p class="feature-mockup-summary">Every order arrives with artwork, custom text, proof status, and payment in one place.</p>
+                <div class="feature-mockup-highlight-panel">
+                  <div class="feature-mockup-highlight-head">
+                    <div>
+                      <span class="feature-mockup-overline">Latest order</span>
+                      <strong>#2486 Oversized Tee</strong>
+                    </div>
+                    <span class="feature-mockup-pill is-blue">Paid</span>
+                  </div>
+                  <div class="feature-mockup-detail-grid">
+                    <div class="feature-mockup-detail-pill">
+                      <span>Customer</span>
+                      <strong>Sarah Khan</strong>
+                    </div>
+                    <div class="feature-mockup-detail-pill">
+                      <span>Upload</span>
+                      <strong>Front logo SVG</strong>
+                    </div>
+                    <div class="feature-mockup-detail-pill">
+                      <span>Custom text</span>
+                      <strong>Rahim 07</strong>
+                    </div>
+                    <div class="feature-mockup-detail-pill">
+                      <span>Print note</span>
+                      <strong>Center on black tee</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="feature-mockup-stat-strip">
+                  <div class="feature-mockup-stat">
+                    <strong>148</strong>
+                    <span>Active orders</span>
+                  </div>
+                  <div class="feature-mockup-stat">
+                    <strong>12</strong>
+                    <span>Awaiting proof</span>
+                  </div>
+                  <div class="feature-mockup-stat">
+                    <strong>31</strong>
+                    <span>In production</span>
+                  </div>
+                </div>
+                <div class="feature-mockup-list">
+                  <div class="feature-mockup-list-row">
+                    <div class="feature-mockup-list-copy">
+                      <strong>Create proof v1</strong>
+                      <span>Designer assigned with files attached</span>
+                    </div>
+                    <span class="feature-mockup-pill is-gold">In design</span>
+                  </div>
+                  <div class="feature-mockup-list-row">
+                    <div class="feature-mockup-list-copy">
+                      <strong>Send review link</strong>
+                      <span>Proof page ready for approval or edits</span>
+                    </div>
+                    <span class="feature-mockup-pill is-blue">Next step</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-mockup-card feature-mockup-card-files" data-feature-mockup-card data-feature-label="Print-Ready File Management Interface">
+              <div class="feature-mockup-window">
+                <div class="feature-mockup-topbar">
+                  <span>Proofing</span>
+                  <div class="feature-mockup-status-icons" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="feature-mockup-app-head">
+                  <div>
+                    <span class="feature-mockup-chip">Proof cycle</span>
+                    <h3>Print-Ready File Manager</h3>
+                  </div>
+                  <span class="feature-mockup-icon" aria-hidden="true"><i data-feather="file-text"></i></span>
+                </div>
+                <p class="feature-mockup-summary">Track revisions, lock the approved file, and send the final version to production.</p>
+                <div class="feature-mockup-proof-panel">
+                  <div class="feature-mockup-proof-badge">Proof v03</div>
+                  <div class="feature-mockup-proof-canvas">
+                    <div class="feature-mockup-proof-garment">
+                      <div class="feature-mockup-proof-art">
+                        <span>Front proof</span>
+                        <strong>RAHIM</strong>
+                        <small>07</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="feature-mockup-side-panel">
+                  <div class="feature-mockup-side-panel-title">Approval loop</div>
+                  <div class="feature-mockup-side-row">
+                    <span>Revision 1</span>
+                    <em>Move logo higher</em>
+                  </div>
+                  <div class="feature-mockup-side-row">
+                    <span>Revision 2</span>
+                    <em>Add white outline</em>
+                  </div>
+                  <div class="feature-mockup-side-row">
+                    <span>Final proof</span>
+                    <em>Customer approved</em>
+                  </div>
+                </div>
+                <div class="feature-mockup-files-grid">
+                  <div class="feature-mockup-file-card is-blue">
+                    <strong>proof-v3.png</strong>
+                    <span>Ready for review</span>
+                  </div>
+                  <div class="feature-mockup-file-card is-pink">
+                    <strong>print-ready.pdf</strong>
+                    <span>Locked for print</span>
+                  </div>
+                  <div class="feature-mockup-file-card is-gold">
+                    <strong>source.ai</strong>
+                    <span>Source archived</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-mockup-card feature-mockup-card-upload" data-feature-mockup-card data-feature-label="Customer Design Upload System Interface">
+              <div class="feature-mockup-window">
+                <div class="feature-mockup-topbar">
+                  <span>Customize</span>
+                  <div class="feature-mockup-status-icons" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="feature-mockup-app-head">
+                  <div>
+                    <span class="feature-mockup-chip">Upload request</span>
+                    <h3>Customer Design Upload</h3>
+                  </div>
+                  <span class="feature-mockup-icon" aria-hidden="true"><i data-feather="upload-cloud"></i></span>
+                </div>
+                <p class="feature-mockup-summary">Upload art, add text, and share print notes.</p>
+                <div class="feature-mockup-dropzone feature-mockup-dropzone-rich">
+                  <div class="feature-mockup-dropzone-head">
+                    <span class="feature-mockup-dropzone-icon" aria-hidden="true"><i data-feather="upload"></i></span>
+                    <div class="feature-mockup-dropzone-copy">
+                      <strong>Upload artwork</strong>
+                      <span>SVG, PNG, PDF, or PSD.</span>
+                    </div>
+                  </div>
+                  <div class="feature-mockup-upload-toolbar">
+                    <button type="button" class="feature-mockup-upload-button">Choose files</button>
+                    <span class="feature-mockup-upload-meta">Up to 25 MB</span>
+                  </div>
+                  <div class="feature-mockup-upload-status">
+                    <span class="feature-mockup-upload-badge">logo-front.svg</span>
+                    <span class="feature-mockup-upload-badge is-pending">print-notes.pdf</span>
+                  </div>
+                </div>
+                <div class="feature-mockup-request-panel">
+                  <div class="feature-mockup-request-hero">
+                    <div>
+                      <span class="feature-mockup-overline">Customization submitted</span>
+                      <strong>11oz Gloss Mug</strong>
+                    </div>
+                    <span class="feature-mockup-pill is-green">Received</span>
+                  </div>
+                  <div class="feature-mockup-request-grid">
+                    <div class="feature-mockup-request-card">
+                      <span>Artwork</span>
+                      <strong>logo-front.svg</strong>
+                    </div>
+                    <div class="feature-mockup-request-card">
+                      <span>Personal text</span>
+                      <strong>Happy Birthday Nila</strong>
+                    </div>
+                    <div class="feature-mockup-request-card">
+                      <span>Placement</span>
+                      <strong>Centered front</strong>
+                    </div>
+                    <div class="feature-mockup-request-card">
+                      <span>Special note</span>
+                      <strong>Keep navy bg</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="feature-mockup-thread">
+                  <div class="feature-mockup-thread-row is-customer">
+                    <span class="feature-mockup-avatar">JM</span>
+                    <div class="feature-mockup-thread-copy">
+                      <strong>J. Miller</strong>
+                      <span>Center the artwork and make the text larger.</span>
+                    </div>
+                  </div>
+                  <div class="feature-mockup-thread-row is-team">
+                    <span class="feature-mockup-avatar is-team">CC</span>
+                    <div class="feature-mockup-thread-copy">
+                      <strong>CustomCarify</strong>
+                      <span>Proof v1 is ready. Approve it or send edits here.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-mockup-card feature-mockup-card-production" data-feature-mockup-card data-feature-label="Production Workflow Tracking Interface">
+              <div class="feature-mockup-window">
+                <div class="feature-mockup-topbar">
+                  <span>Fulfillment</span>
+                  <div class="feature-mockup-status-icons" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+                <div class="feature-mockup-app-head">
+                  <div>
+                    <span class="feature-mockup-chip">Post approval</span>
+                    <h3>Production Tracker</h3>
+                  </div>
+                  <span class="feature-mockup-icon" aria-hidden="true"><i data-feather="activity"></i></span>
+                </div>
+                <p class="feature-mockup-summary">After approval, the order moves through print, shipping, and payout with clear live status.</p>
+                <div class="feature-mockup-stage-rail">
+                  <div class="feature-mockup-stage-step is-done">
+                    <span class="feature-mockup-stage-dot"></span>
+                    <span>Approved</span>
+                  </div>
+                  <div class="feature-mockup-stage-step is-done">
+                    <span class="feature-mockup-stage-dot"></span>
+                    <span>File ready</span>
+                  </div>
+                  <div class="feature-mockup-stage-step is-active">
+                    <span class="feature-mockup-stage-dot"></span>
+                    <span>Printing</span>
+                  </div>
+                  <div class="feature-mockup-stage-step">
+                    <span class="feature-mockup-stage-dot"></span>
+                    <span>Shipped</span>
+                  </div>
+                  <div class="feature-mockup-stage-step">
+                    <span class="feature-mockup-stage-dot"></span>
+                    <span>Paid out</span>
+                  </div>
+                </div>
+                <div class="feature-mockup-board">
+                  <div class="feature-mockup-board-card">
+                    <strong>Queued</strong>
+                    <span>14</span>
+                  </div>
+                  <div class="feature-mockup-board-card">
+                    <strong>Printing</strong>
+                    <span>08</span>
+                  </div>
+                  <div class="feature-mockup-board-card">
+                    <strong>Packing</strong>
+                    <span>05</span>
+                  </div>
+                  <div class="feature-mockup-board-card">
+                    <strong>Shipping</strong>
+                    <span>03</span>
+                  </div>
+                </div>
+                <div class="feature-mockup-route">
+                  <div class="feature-mockup-route-row">
+                    <span>#2486 Oversized Tee</span>
+                    <em>Printing</em>
+                  </div>
+                  <div class="feature-mockup-route-row">
+                    <span>#2479 Mug Gift Set</span>
+                    <em>Packed</em>
+                  </div>
+                  <div class="feature-mockup-route-row">
+                    <span>#2471 Tote Sample Run</span>
+                    <em>Paid</em>
+                  </div>
+                </div>
+              </div>
+            </article>
           </div>
-          <div class="bento-card">
-            <div class="icon-wrap"><i data-feather="activity"></i></div>
-            <h3>Production Workflow Tracking</h3>
-            <p>Know exactly what is being printed, shipped, or awaiting payment at any given moment.</p>
-          </div>
+
+          <button class="feature-mockup-nav feature-mockup-nav-next" type="button" data-feature-mockup-next aria-label="Next mockup">
+            <i data-feather="chevron-right"></i>
+          </button>
         </div>
+
+        <div class="feature-mockup-footer">
+          <div class="feature-mockup-dots" role="group" aria-label="Mockup screens">
+            <button class="feature-mockup-dot is-active" type="button" data-feature-mockup-dot aria-label="Centralized Order Dashboard"></button>
+            <button class="feature-mockup-dot" type="button" data-feature-mockup-dot aria-label="Print-Ready File Management Interface"></button>
+            <button class="feature-mockup-dot" type="button" data-feature-mockup-dot aria-label="Customer Design Upload System Interface"></button>
+            <button class="feature-mockup-dot" type="button" data-feature-mockup-dot aria-label="Production Workflow Tracking Interface"></button>
+          </div>
+          <span class="feature-mockup-progress" data-feature-mockup-progress>01 / 04</span>
+        </div>
+        <p class="feature-mockup-hint">Swipe left or right to move through the POD workflow screens.</p>
       </div>
     </div>
   </section>
@@ -592,26 +1008,68 @@
             businesses</strong></p>
       </div>
 
-      <div class="bento-grid why-grid">
-        <div class="bento-card">
-          <div class="icon-wrap"><i data-feather="target"></i></div>
-          <h3><em>Built</em> for Real Printing</h3>
-          <p>Not generic software — designed for custom orders, design approvals, and real-world processes.</p>
+      <div class="stats-bento">
+        <div class="stat-bento-card horizontal reveal">
+          <div class="stat-value">3+</div>
+          <div class="stat-label">years of industry experience</div>
         </div>
-        <div class="bento-card">
-          <div class="icon-wrap"><i data-feather="zap"></i></div>
-          <h3><em>Simple</em> System for Teams</h3>
-          <p>No complex setup. No training headaches. Just a system that works from day one.</p>
+        <div class="stat-bento-card tall brand-bg reveal">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Recent Clients</div>
         </div>
-        <div class="bento-card">
-          <div class="icon-wrap"><i data-feather="clock"></i></div>
-          <h3>Save <em>Hours</em> Every Day</h3>
-          <p>Reduce manual work, back-and-forth, and repetitive tasks.</p>
+        <div class="stat-bento-card reveal">
+          <div class="stat-value">42+</div>
+          <div class="stat-label">Happy Clients</div>
         </div>
-        <div class="bento-card">
-          <div class="icon-wrap"><i data-feather="trending-up"></i></div>
-          <h3>Grow <em>Without</em> Chaos</h3>
-          <p>Handle more orders without losing control of your workflow.</p>
+        <div class="stat-bento-card reveal">
+          <div class="stat-value">113+</div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+      </div>
+
+      <div class="why-flow-v2">
+        <div class="why-flow-item reveal">
+          <div class="why-flow-marker">
+            <div class="marker-icon"><i data-feather="target"></i></div>
+            <div class="marker-pedestal"></div>
+          </div>
+          <div class="why-flow-content">
+            <h3><em>Built</em> for Real Printing</h3>
+            <p>Not generic software — designed for custom orders, design approvals, and real-world processes.</p>
+          </div>
+        </div>
+
+        <div class="why-flow-item reveal">
+          <div class="why-flow-marker">
+            <div class="marker-icon"><i data-feather="zap"></i></div>
+            <div class="marker-pedestal"></div>
+          </div>
+          <div class="why-flow-content">
+            <h3><em>Simple</em> System for Teams</h3>
+            <p>No complex setup. No training headaches. Just a system that works from day one.</p>
+          </div>
+        </div>
+
+        <div class="why-flow-item reveal">
+          <div class="why-flow-marker">
+            <div class="marker-icon"><i data-feather="clock"></i></div>
+            <div class="marker-pedestal"></div>
+          </div>
+          <div class="why-flow-content">
+            <h3>Save <em>Hours</em> Every Day</h3>
+            <p>Reduce manual work, back-and-forth, and repetitive tasks.</p>
+          </div>
+        </div>
+
+        <div class="why-flow-item reveal">
+          <div class="why-flow-marker">
+            <div class="marker-icon"><i data-feather="trending-up"></i></div>
+            <div class="marker-pedestal"></div>
+          </div>
+          <div class="why-flow-content">
+            <h3>Grow <em>Without</em> Chaos</h3>
+            <p>Handle more orders without losing control of your workflow.</p>
+          </div>
         </div>
       </div>
 
@@ -810,7 +1268,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
