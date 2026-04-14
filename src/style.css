@@ -7785,6 +7785,214 @@ a {
   }
 }
 
+/* Testimonials Vertical Marquee */
+.testimonials-marquee-section {
+  padding: 80px 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.testimonials-heading {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: #153423;
+  margin-bottom: 50px;
+  letter-spacing: -0.04em;
+}
+
+.testimonials-heading em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-orange);
+}
+
+.marquee-vertical-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 520px; /* Reveal approx 2 cards per column */
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+.marquee-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.marquee-vertical-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: scroll-up 25s linear infinite;
+}
+
+/* Bidirectional Logic */
+.marquee-col-2 .marquee-vertical-group,
+.marquee-down {
+  animation: scroll-down 25s linear infinite;
+}
+
+@keyframes scroll-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+@keyframes scroll-down {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+
+.testimonial-card {
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(21, 52, 35, 0.05);
+  border-radius: 20px;
+  padding: 18px 16px;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 24px rgba(20, 64, 33, 0.02),
+    inset 0 1px 0 #ffffff;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.testimonial-card:hover {
+  transform: scale(1.03);
+  border-color: rgba(47, 158, 68, 0.15);
+  z-index: 10;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: #228be6; /* Blue quote icons */
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.testimonial-glow {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(132, 214, 154, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testimonial-text {
+  position: relative;
+  z-index: 2;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #153423;
+  margin-bottom: 14px;
+  font-weight: 500;
+  padding-top: 10px;
+}
+
+.testimonial-text em {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.1em;
+  font-style: italic;
+  color: var(--accent-orange);
+  font-weight: 400;
+}
+
+.testimonial-author {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  background-color: #f1f9f3;
+}
+
+/* Real Human Avatars from Unsplash */
+.avatar-1 { background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-2 { background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-3 { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-4 { background-image: url('https://images.unsplash.com/photo-1567532939604-b6b5b0ad2604?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-5 { background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-6 { background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-7 { background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-8 { background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150'); }
+.avatar-9 { background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150'); }
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #153423;
+}
+
+.author-company {
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .marquee-vertical-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    height: 480px;
+  }
+  .marquee-col-3 { display: none; }
+}
+
+@media (max-width: 640px) {
+  .marquee-vertical-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    height: 420px;
+  }
+  .marquee-col-2 { display: none; }
+
+  .testimonial-card {
+    padding: 16px;
+  }
+
+  .testimonial-text {
+    font-size: 12px !important;
+  }
+}
+
+/* Audit Section Refresh */
+.offer-section {
+  overflow: hidden;
+}
+
 /* Audit Section Refresh */
 .offer-section {
   overflow: hidden;
