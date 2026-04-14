@@ -446,7 +446,7 @@ a {
     border-radius: 20px;
   }
 
-  .nav-right > .btn-nav {
+  .nav-right>.btn-nav {
     display: none;
   }
 
@@ -1467,7 +1467,7 @@ a {
   margin-bottom: 6px;
 }
 
-.comparison-point-copy > span {
+.comparison-point-copy>span {
   display: block;
   font-size: 0.88rem;
   line-height: 1.55;
@@ -1819,10 +1819,8 @@ a {
 }
 
 .comparison-shell.is-mobile-compare[data-mobile-compare="after"] .comparison-transform-core::before {
-  transform: translate(
-    calc(100% - var(--comparison-slider-thumb-size) - (var(--comparison-slider-thumb-offset) * 2)),
-    -50%
-  );
+  transform: translate(calc(100% - var(--comparison-slider-thumb-size) - (var(--comparison-slider-thumb-offset) * 2)),
+      -50%);
   background: linear-gradient(135deg, rgba(56, 203, 148, 0.96), rgba(29, 170, 115, 0.92));
   box-shadow:
     0 10px 24px rgba(31, 168, 116, 0.24),
@@ -1970,8 +1968,7 @@ a {
   position: absolute;
   z-index: 3;
   transform:
-    translate3d(calc(-50% - (var(--comparison-panel-offset) * var(--split-progress))), calc(-10px * var(--split-progress)), 0)
-    scale(calc(1 - (0.015 * var(--split-progress))));
+    translate3d(calc(-50% - (var(--comparison-panel-offset) * var(--split-progress))), calc(-10px * var(--split-progress)), 0) scale(calc(1 - (0.015 * var(--split-progress))));
   border-color: rgba(255, 111, 99, 0.16);
   background:
     radial-gradient(circle at 18% 16%, rgba(255, 116, 101, 0.12), transparent 26%),
@@ -1988,8 +1985,7 @@ a {
   z-index: 2;
   opacity: calc(0.56 + (0.44 * var(--split-progress)));
   transform:
-    translate3d(calc(-50% + (var(--comparison-panel-offset) * var(--split-progress))), calc(24px - (24px * var(--split-progress))), 0)
-    scale(calc(0.93 + (0.07 * var(--split-progress))));
+    translate3d(calc(-50% + (var(--comparison-panel-offset) * var(--split-progress))), calc(24px - (24px * var(--split-progress))), 0) scale(calc(0.93 + (0.07 * var(--split-progress))));
   filter: saturate(calc(0.86 + (0.14 * var(--split-progress))));
   border-color: rgba(31, 168, 116, 0.18);
   background:
@@ -2242,7 +2238,7 @@ a {
   border-bottom: 1px solid rgba(21, 52, 35, 0.06);
 }
 
-.comparison-table-row + .comparison-table-row {
+.comparison-table-row+.comparison-table-row {
   border-top: 1px solid rgba(21, 52, 35, 0.06);
 }
 
@@ -2503,8 +2499,7 @@ a {
   position: relative;
   z-index: 1;
   filter:
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.88))
-    drop-shadow(0 0 10px rgba(132, 214, 154, 0.18));
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.88)) drop-shadow(0 0 10px rgba(132, 214, 154, 0.18));
 }
 
 .step-number {
@@ -2573,8 +2568,7 @@ a {
   height: 100%;
   overflow: visible;
   filter:
-    drop-shadow(0 0 8px rgba(122, 210, 147, 0.2))
-    drop-shadow(0 0 14px rgba(122, 210, 147, 0.14));
+    drop-shadow(0 0 8px rgba(122, 210, 147, 0.2)) drop-shadow(0 0 14px rgba(122, 210, 147, 0.14));
 }
 
 .connector-curve path {
@@ -3241,7 +3235,7 @@ a {
   -webkit-overflow-scrolling: touch;
 }
 
-.feature-mockup-window > * {
+.feature-mockup-window>* {
   flex-shrink: 0;
 }
 
@@ -3390,8 +3384,8 @@ a {
   margin-bottom: 8px;
 }
 
-.feature-mockup-highlight-head > div,
-.feature-mockup-request-hero > div:first-child {
+.feature-mockup-highlight-head>div,
+.feature-mockup-request-hero>div:first-child {
   min-width: 0;
 }
 
@@ -3615,7 +3609,7 @@ a {
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
 
-.feature-mockup-stage-step > span:last-child {
+.feature-mockup-stage-step>span:last-child {
   font-size: 0.5rem;
   line-height: 1.35;
   font-weight: 800;
@@ -4548,7 +4542,7 @@ a {
   gap: 80px;
   align-items: center;
   border: 1px solid rgba(21, 52, 35, 0.05);
-  box-shadow: 
+  box-shadow:
     0 40px 100px rgba(20, 64, 33, 0.05),
     0 10px 40px rgba(20, 64, 33, 0.02);
   position: relative;
@@ -4625,7 +4619,7 @@ a {
   border-radius: 40px;
   padding: 40px;
   color: #fff;
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(35, 123, 52, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.2);
   position: relative;
@@ -4724,7 +4718,8 @@ a {
 .audit-submit {
   width: fit-content;
   margin-top: 16px;
-  padding: 6px 28px 6px 6px; /* Room for the circle icon on left */
+  padding: 6px 28px 6px 6px;
+  /* Room for the circle icon on left */
   border-radius: 999px;
   background: #ffffff;
   color: #000;
@@ -5535,7 +5530,8 @@ a {
 
   .problem-grid .bento-card.wide {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 16px;
   }
 
@@ -5582,7 +5578,7 @@ a {
   .feature-mockup-shell {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
       "stage stage"
       "prev next";
     justify-items: center;
@@ -5855,7 +5851,7 @@ a {
     font-size: 0.62rem;
   }
 
-  .feature-mockup-stage-step > span:last-child {
+  .feature-mockup-stage-step>span:last-child {
     font-size: 0.48rem;
     min-height: 2.85em;
     line-height: 1.34;
@@ -6086,6 +6082,7 @@ a {
 }
 
 @media (max-width: 640px) {
+
   .section-header h2,
   .hero-content h1 {
     font-size: 1.72rem;
@@ -6215,7 +6212,7 @@ a {
 
   .feature-mockup-detail-pill span,
   .feature-mockup-request-card span,
-  .feature-mockup-stage-step > span:last-child {
+  .feature-mockup-stage-step>span:last-child {
     font-size: 0.5rem;
   }
 
@@ -6276,7 +6273,7 @@ a {
     box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.12);
   }
 
-  .feature-mockup-stage-step > span:last-child {
+  .feature-mockup-stage-step>span:last-child {
     min-height: 3em;
     line-height: 1.36;
   }
@@ -6628,7 +6625,7 @@ a {
     display: none;
   }
 
-  .feature-mockup-stage-step > span:last-child {
+  .feature-mockup-stage-step>span:last-child {
     display: block;
     flex: 1;
     min-width: 0;
@@ -6645,6 +6642,7 @@ a {
 }
 
 @media (max-width: 480px) {
+
   .comparison-panel,
   .comparison-footer {
     padding: 16px 14px;
@@ -7427,7 +7425,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 
+  box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.85),
     0 16px 36px rgba(20, 64, 33, 0.08);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -7518,21 +7516,21 @@ a {
     gap: 16px;
     padding: 0 16px;
   }
-  
+
   .stat-bento-card.tall {
     grid-column: span 2;
     grid-row: auto;
     min-height: 140px;
   }
-  
+
   .stat-bento-card {
     padding: 24px 16px;
   }
-  
+
   .stat-bento-card .stat-value {
     font-size: 2.2rem !important;
   }
-  
+
   .stat-bento-card .stat-label {
     font-size: 0.82rem !important;
   }
@@ -7544,12 +7542,12 @@ a {
     gap: 12px;
     max-width: 380px;
   }
-  
+
   .stat-bento-card.horizontal,
   .stat-bento-card.tall {
     grid-column: span 1;
   }
-  
+
   .stat-bento-card .stat-value {
     font-size: 2rem !important;
   }
@@ -7574,13 +7572,11 @@ a {
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(47, 158, 68, 0.25) 0,
-    rgba(47, 158, 68, 0.25) 12px,
-    transparent 12px,
-    transparent 24px
-  );
+  background: repeating-linear-gradient(to bottom,
+      rgba(47, 158, 68, 0.25) 0,
+      rgba(47, 158, 68, 0.25) 12px,
+      transparent 12px,
+      transparent 24px);
   transform: translateX(-50%);
   z-index: 1;
 }
@@ -7608,7 +7604,7 @@ a {
   padding: 20px 24px;
   border-radius: 20px;
   border: 1px solid var(--border-light);
-  box-shadow: 
+  box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.8),
     0 15px 30px rgba(20, 64, 33, 0.05);
   position: relative;
@@ -7671,7 +7667,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 
+  box-shadow:
     0 8px 20px rgba(20, 64, 33, 0.1),
     inset 0 1px 0 #ffffff;
   z-index: 2;
@@ -7747,20 +7743,20 @@ a {
   .why-flow-v2::before {
     left: 32px;
   }
-  
+
   .why-flow-item {
     flex-direction: row !important;
     padding-left: 64px;
     margin-bottom: 40px;
     min-height: auto;
   }
-  
+
   .why-flow-content {
     width: 100%;
     text-align: left !important;
     padding: 24px;
   }
-  
+
   .why-flow-marker {
     left: 32px;
     transform: translateX(-50%);
@@ -7781,7 +7777,7 @@ a {
   .marker-pedestal {
     width: 50px;
   }
-  
+
   .why-flow-item::after {
     left: 32px !important;
     right: auto;
