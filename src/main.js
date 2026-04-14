@@ -1,36 +1,38 @@
 import './style.css'
+import { createIconElement, replaceIcons } from './icons.js'
 
 const LEAD_RECIPIENT_EMAIL = 'hello@customcarify.com'
+const AUDIT_REQUEST_ENDPOINT = '/api/audit-request'
 
 document.addEventListener('DOMContentLoaded', () => {
   const setMenuIcon = (button, iconName) => {
-    if (!button || !window.feather?.icons?.[iconName]) {
+    if (!button) {
       return
     }
 
-    button.innerHTML = feather.icons[iconName].toSvg({
-      'aria-hidden': 'true'
-    })
+    button.replaceChildren(createIconElement(iconName))
   }
 
   // --- Typewriter Animation ---
   const typeTarget = document.getElementById('typing-target')
-  const textToType = "Run Your Printing Business Like a Pro"
+  const textToType = 'Run Your Printing Business Like a Pro'
   let index = 0
 
   function type() {
-    if (index < textToType.length) {
+    if (typeTarget && index < textToType.length) {
       typeTarget.textContent += textToType.charAt(index)
       index++
       setTimeout(type, 70) // Adjust speed here
     }
   }
 
-  // Initialize Feather Icons
-  feather.replace()
+  // Initialize local icon sprite replacements.
+  replaceIcons()
 
   // Start typewriter after a small delay
-  setTimeout(type, 800)
+  if (typeTarget) {
+    setTimeout(type, 800)
+  }
 
   // --- Dashboard Stat Count Up ---
   const animateValue = (id, start, end, duration) => {
@@ -91,23 +93,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Scroll Reveal Animation ---
   const revealElements = document.querySelectorAll('.reveal')
 
-  const revealOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
-  }
+  revealElements.forEach((element) => {
+    element.classList.add('reveal-ready')
+  })
 
-  const revealOnScroll = new IntersectionObserver(function (entries, observer) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        return
-      } else {
+  if ('IntersectionObserver' in window) {
+    const revealOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return
+        }
+
         entry.target.classList.add('active')
         observer.unobserve(entry.target)
-      }
-    })
-  }, revealOptions)
+      })
+    }, revealOptions)
 
-  revealElements.forEach(el => revealOnScroll.observe(el))
+    revealElements.forEach((element) => revealOnScroll.observe(element))
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add('active')
+    })
+  }
 
   // --- Mouse Spotlight Effect ---
   // Tracks mouse and moves a glowing background element slightly
@@ -463,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     featureMockupStage?.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) {
+      if (event.pointerType !== 'mouse' || event.button !== 0) {
         return
       }
 
@@ -474,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     featureMockupStage?.addEventListener('pointerup', (event) => {
-      if (!featureMockupPointerActive) {
+      if (event.pointerType !== 'mouse' || !featureMockupPointerActive) {
         return
       }
 
@@ -491,7 +503,37 @@ document.addEventListener('DOMContentLoaded', () => {
       setFeatureMockupIndex(deltaX < 0 ? featureMockupIndex + 1 : featureMockupIndex - 1)
     })
 
-    featureMockupStage?.addEventListener('pointercancel', () => {
+    featureMockupStage?.addEventListener('pointercancel', (event) => {
+      if (event.pointerType !== 'mouse') return
+      featureMockupPointerActive = false
+    })
+
+    featureMockupStage?.addEventListener('touchstart', (event) => {
+      const touch = event.changedTouches[0]
+      if (!touch) return
+      
+      featureMockupPointerActive = true
+      featureMockupPointerStartX = touch.clientX
+      featureMockupPointerStartY = touch.clientY
+    }, { passive: true })
+
+    featureMockupStage?.addEventListener('touchend', (event) => {
+      if (!featureMockupPointerActive) return
+      const touch = event.changedTouches[0]
+      if (!touch) return
+
+      featureMockupPointerActive = false
+      const deltaX = touch.clientX - featureMockupPointerStartX
+      const deltaY = touch.clientY - featureMockupPointerStartY
+
+      if (Math.abs(deltaX) < 42 || Math.abs(deltaX) <= Math.abs(deltaY)) {
+        return
+      }
+
+      setFeatureMockupIndex(deltaX < 0 ? featureMockupIndex + 1 : featureMockupIndex - 1)
+    }, { passive: true })
+
+    featureMockupStage?.addEventListener('touchcancel', () => {
       featureMockupPointerActive = false
     })
 
@@ -501,46 +543,83 @@ document.addEventListener('DOMContentLoaded', () => {
   // Lead Form
   const auditForm = document.getElementById('audit-form')
   const auditFormStatus = document.getElementById('audit-form-status')
+  const auditSubmitButton = auditForm?.querySelector('button[type="submit"]')
+
+  const setAuditFormStatus = (state, message) => {
+    if (!auditFormStatus) {
+      return
+    }
+
+    auditFormStatus.className = 'form-status'
+
+    if (state) {
+      auditFormStatus.classList.add(`is-${state}`)
+    }
+
+    auditFormStatus.textContent = message
+  }
 
   if (auditForm) {
-    auditForm.addEventListener('submit', (event) => {
+    auditForm.addEventListener('submit', async (event) => {
       event.preventDefault()
 
       const formData = new FormData(auditForm)
-      const fullName = formData.get('fullName')?.toString().trim() || ''
-      const businessName = formData.get('businessName')?.toString().trim() || ''
-      const email = formData.get('email')?.toString().trim() || ''
-      const phone = formData.get('phone')?.toString().trim() || ''
-      const volume = formData.get('volume')?.toString().trim() || ''
-      const challenge = formData.get('challenge')?.toString().trim() || ''
-
-      const subject = `Workflow audit request from ${businessName}`
-      const body = [
-        'New workflow audit request',
-        '',
-        `Full name: ${fullName}`,
-        `Business name: ${businessName}`,
-        `Work email: ${email}`,
-        `Phone / WhatsApp: ${phone}`,
-        `Monthly order volume: ${volume}`,
-        '',
-        'Biggest workflow bottleneck:',
-        challenge
-      ].join('\n')
-
-      const mailtoUrl = `mailto:${LEAD_RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-
-      if (auditFormStatus) {
-        auditFormStatus.textContent = `Opening your email app for ${LEAD_RECIPIENT_EMAIL}...`
+      const payload = {
+        fullName: formData.get('fullName')?.toString().trim() || '',
+        businessName: formData.get('businessName')?.toString().trim() || '',
+        email: formData.get('email')?.toString().trim() || '',
+        phone: formData.get('phone')?.toString().trim() || '',
+        volume: formData.get('volume')?.toString().trim() || '',
+        challenge: formData.get('challenge')?.toString().trim() || '',
+        website: formData.get('website')?.toString().trim() || ''
       }
 
-      window.location.href = mailtoUrl
+      auditSubmitButton?.setAttribute('disabled', 'true')
+      auditForm.setAttribute('aria-busy', 'true')
+      setAuditFormStatus('pending', 'Sending your workflow audit request...')
 
-      window.setTimeout(() => {
-        if (auditFormStatus) {
-          auditFormStatus.textContent = `If your email app does not open, send your details manually to ${LEAD_RECIPIENT_EMAIL}.`
+      try {
+        const response = await fetch(AUDIT_REQUEST_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        })
+
+        let result = null
+
+        try {
+          result = await response.json()
+        } catch {
+          result = null
         }
-      }, 1200)
+
+        if (!response.ok) {
+          throw new Error(
+            result?.error ||
+            `We could not send the request right now. Email ${LEAD_RECIPIENT_EMAIL} directly.`
+          )
+        }
+
+        setAuditFormStatus(
+          'success',
+          result?.message || 'Thanks. Your audit request is in and our team will reach out soon.'
+        )
+        auditForm.reset()
+      } catch (error) {
+        const fallbackMessage = `We could not send the request right now. Email ${LEAD_RECIPIENT_EMAIL} directly.`
+        const message =
+          error instanceof Error && error.message
+            ? error.message
+            : fallbackMessage
+
+        setAuditFormStatus('error', message)
+      } finally {
+        auditSubmitButton?.removeAttribute('disabled')
+        auditForm.removeAttribute('aria-busy')
+      }
     })
   }
 
@@ -607,7 +686,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
-
-  // Signal FOUC readiness
-  document.body.classList.add('fouc-ready');
 })

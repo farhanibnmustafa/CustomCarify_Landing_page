@@ -5,29 +5,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CustomCarify Enterprise - Optimize Your POD Workflow</title>
+  <meta
+    name="description"
+    content="CustomCarify helps print-on-demand teams organize orders, approvals, and production in one workflow so they can scale with fewer delays, errors, and customer complaints." />
+  <meta name="theme-color" content="#2f9e44" />
+  <meta property="og:title" content="CustomCarify Enterprise - Optimize Your POD Workflow" />
+  <meta
+    property="og:description"
+    content="Organize POD orders, approvals, and fulfillment in one system built to reduce delays and operational chaos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/hero-mockup.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CustomCarify Enterprise - Optimize Your POD Workflow" />
+  <meta
+    name="twitter:description"
+    content="Organize POD orders, approvals, and fulfillment in one system built to reduce delays and operational chaos." />
+  <meta name="twitter:image" content="/hero-mockup.png" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <script src="https://unpkg.com/feather-icons"></script>
-
-  <style>
-    /* Prevent Flash of Unstyled Content (FOUC) */
-    .fouc-guard {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .fouc-ready {
-      opacity: 1;
-    }
-  </style>
   <script type="module" src="/src/main.js"></script>
   <link rel="stylesheet" href="/src/style.css">
 </head>
 
-<body class="fouc-guard">
+<body>
   <div class="spotlight"></div>
 
   <nav class="navbar">
@@ -111,7 +115,7 @@
           business scales with fewer delays and mistakes.</p>
         <div class="hero-cta-group">
           <a href="#audit" class="btn btn-glow btn-large">Get Your Free Workflow Audit</a>
-          <a href="#workflow" class="btn btn-secondary btn-large"><i data-feather="play"></i> See How It Works</a>
+          <a href="#workflow" class="btn btn-secondary btn-large hero-workflow-btn"><i data-feather="play"></i> See How It Works</a>
         </div>
       </div>
 
@@ -1083,19 +1087,41 @@
   <!-- OFFER SECTION -->
   <section id="audit" class="section offer-section reveal">
     <div class="container">
-      <div class="bento-card offer-card glow-border">
+      <div class="offer-card glow-border">
         <div class="offer-copy">
-          <div class="icon-wrap xl"><i data-feather="search"></i></div>
+          <div class="offer-intro">
+            <span class="offer-eyebrow">Free Workflow Review</span>
+          </div>
           <h2>Get a Free Workflow Audit <em>Discover What’s Slowing You Down</em></h2>
-          <p class="section-subheadline">We’ll review your workflow and show you the biggest bottlenecks and next steps.</p>
+          <p class="section-subheadline">We’ll review your workflow, pinpoint the biggest bottlenecks, and show you the next steps that will actually make operations smoother.</p>
 
           <div class="offer-benefits">
             <h4>What You'll Get:</h4>
-            <ul class="check-list success-list">
-              <li><i data-feather="check-circle"></i> Identify delays in your workflow</li>
-              <li><i data-feather="check-circle"></i> Spot inefficiencies and hidden bottlenecks</li>
-              <li><i data-feather="check-circle"></i> Get clear, actionable improvement suggestions</li>
-              <li><i data-feather="check-circle"></i> See how to scale your process without added chaos</li>
+            <ul class="offer-benefit-list">
+              <li class="offer-benefit-item">
+                <span class="offer-benefit-icon"><i data-feather="check-circle"></i></span>
+                <span class="offer-benefit-copy">
+                  <strong>Identify delays in your workflow</strong>
+                </span>
+              </li>
+              <li class="offer-benefit-item">
+                <span class="offer-benefit-icon"><i data-feather="check-circle"></i></span>
+                <span class="offer-benefit-copy">
+                  <strong>Find inefficiencies</strong>
+                </span>
+              </li>
+              <li class="offer-benefit-item">
+                <span class="offer-benefit-icon"><i data-feather="check-circle"></i></span>
+                <span class="offer-benefit-copy">
+                  <strong>Get improvement suggestions</strong>
+                </span>
+              </li>
+              <li class="offer-benefit-item">
+                <span class="offer-benefit-icon"><i data-feather="check-circle"></i></span>
+                <span class="offer-benefit-copy">
+                  <strong>See how to scale your process</strong>
+                </span>
+              </li>
             </ul>
           </div>
 
@@ -1107,7 +1133,10 @@
 
         <div class="audit-form-panel">
           <div class="audit-form-header">
+            <div class="audit-form-header-row">
             <span class="audit-form-kicker">Request Your Audit</span>
+            <span class="audit-form-meta">Takes about 2 minutes</span>
+            </div>
             <h3>Tell us about your operation</h3>
             <p>Fill in your information and send the request directly to our team.</p>
           </div>
@@ -1116,22 +1145,50 @@
             <div class="audit-form-grid">
               <label class="form-field">
                 <span class="form-label">Full Name</span>
-                <input class="form-input" type="text" name="fullName" placeholder="Your full name" required />
+                <input
+                  class="form-input"
+                  type="text"
+                  name="fullName"
+                  placeholder="Your full name"
+                  autocomplete="name"
+                  maxlength="120"
+                  required />
               </label>
 
               <label class="form-field">
                 <span class="form-label">Business Name</span>
-                <input class="form-input" type="text" name="businessName" placeholder="Your business or brand" required />
+                <input
+                  class="form-input"
+                  type="text"
+                  name="businessName"
+                  placeholder="Your business or brand"
+                  autocomplete="organization"
+                  maxlength="160"
+                  required />
               </label>
 
               <label class="form-field">
                 <span class="form-label">Work Email</span>
-                <input class="form-input" type="email" name="email" placeholder="you@company.com" required />
+                <input
+                  class="form-input"
+                  type="email"
+                  name="email"
+                  placeholder="you@company.com"
+                  autocomplete="email"
+                  maxlength="160"
+                  required />
               </label>
 
               <label class="form-field">
                 <span class="form-label">Phone / WhatsApp</span>
-                <input class="form-input" type="tel" name="phone" placeholder="+1 555 123 4567" required />
+                <input
+                  class="form-input"
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 555 123 4567"
+                  autocomplete="tel"
+                  maxlength="40"
+                  required />
               </label>
 
               <label class="form-field form-field-full">
@@ -1149,12 +1206,22 @@
                 <span class="form-label">Biggest Workflow Bottleneck</span>
                 <textarea class="form-input form-textarea" name="challenge" rows="5"
                   placeholder="Tell us what’s breaking down right now: approvals, order tracking, communication, fulfillment, or something else."
+                  maxlength="2000"
                   required></textarea>
+              </label>
+
+              <label class="form-field form-field-honeypot" aria-hidden="true">
+                <span class="form-label">Website</span>
+                <input class="form-input" type="text" name="website" tabindex="-1" autocomplete="off" />
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large audit-submit">Send Audit Request</button>
-            <p class="form-note">This opens your email app with the completed request prefilled to our inbox.</p>
+            <div class="audit-form-footer">
+              <button type="submit" class="btn btn-primary btn-large audit-submit">
+                Send Audit Request <i data-feather="send"></i>
+              </button>
+              <p class="form-note">Submitted securely to our team. If the form cannot connect, email hello@customcarify.com directly.</p>
+            </div>
             <p class="form-status" id="audit-form-status" aria-live="polite"></p>
           </form>
         </div>
